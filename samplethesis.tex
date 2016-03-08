@@ -1,0 +1,99 @@
+% !TeX program = pdflatex
+
+\documentclass{utthesis}
+
+\usepackage{lipsum} % Dummy text for examples
+\usepackage{graphicx}
+\usepackage[hidelinks,pagebackref]{hyperref} % Handy for links, can comment for plain PDF
+
+\UTyear=2015
+
+\makeindex
+
+\graphicspath{{./images/}}
+
+\begin{document}
+
+\author{John Fredrick Doe} 
+\title{Very Important Title For a Very Important Thesis} 
+\date{Revised: \today}
+
+\UTcopyrightlegend % Optional
+
+\begin{UTcommittee}
+\UTaddsupervisor{George Washington}
+\UTaddcosupervisor{Chuck Norris}
+\UTaddcommittee{John Adams}
+\UTaddcommittee{Thomas Jefferson}
+\UTaddcommittee{James Madison}
+\end{UTcommittee}
+
+\UTtitlepage{B.S.}{May}
+
+\frontmatter
+
+\setcounter{page}{4}
+
+%\include{acknowledgements}
+%\include{preface}
+
+\begin{UTabstract}[s]{George Washington, Chuck Norris}
+\lipsum[1]
+\end{UTabstract}
+
+
+% add . to include section numbers (non-standard)
+\tableofcontents
+%\tableofcontents.
+
+\listoffigures
+
+\mainmatter
+
+\chapter{Start}
+\lipsum[3]
+\section{One}
+\subsection{Mini}
+\section{Two}
+\subsection{Miny}
+\subsubsection{Mo}
+\section{Three}
+\section{This is very very very very very very long to test the guideline for wrapping in the table of contents}
+
+\chapter{More}
+\lipsum[3]
+\begin{figure}
+This is a figure.
+\caption[This]{This is a caption.}
+\end{figure}
+
+\chapter{Finishing}
+\lipsum[3]
+
+\begin{appendix}
+
+\chapter{First}
+\lipsum[3]
+
+\chapter{Second}
+\section{Part one}
+\lipsum[3]
+\section{Part two}
+\begin{figure}
+This is a figure.
+\caption[That]{This is also a caption.}
+\end{figure}
+
+\end{appendix}
+
+\backmatter
+
+\printindex
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\chapter*{Bibliography}
+\lipsum[2]
+
+\end{document}

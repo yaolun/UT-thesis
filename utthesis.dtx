@@ -1,0 +1,529 @@
+% \iffalse meta-comment
+% !TEX program  = pdflatex
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+----------------------------------------------------------------
+utthesis --- A class for the UT thesis
+E-mail: henryiii@physics.utexas.edu
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
+
+This is a class for building a UT thesis. It uses standard latex unpacking procedures
+for a single dtx file. Running latex on the dtx file will produce all needed files.
+Running tex on the dtx file will only produce necessary files (not documentation).
+Place at least the .cls in your thesis folder, or in the standard location for
+installed tex files.
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+----------------------------------------------------------------
+utthesis --- A class for the UT thesis
+E-mail: henryiii@physics.utexas.edu
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
+
+\endpreamble
+\postamble
+
+Copyright (C) 2014 by Henry Schreiner <henryiii@physics.utexas.edu>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in the file:
+
+http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+Henry Schreiner.
+
+This work consists of the file  utthesis.dtx
+and the derived files           utthesis.ins,
+                                utthesis.pdf,
+                                utthesis.cwl, and
+                                utthesis.cls.
+
+\endpostamble
+\usedir{tex/latex/\jobname}
+\generate{
+  \file{\jobname.cls}{\from{\jobname.dtx}{class}}
+}
+\usedir{tex/latex/\jobname}
+\generate{
+  \nopreamble\nopostamble
+  \file{\jobname.cwl}{\from{\jobname.dtx}{cwl}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/\jobname}
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/\jobname}
+\generate{
+  \file{README.txt}{\from{\jobname.dtx}{readme}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+%<class>
+%<class>\NeedsTeXFormat{LaTeX2e}
+%<class>\ProvidesClass{\jobname}[2014/12/12 v0.2  A class for the UT thesis]
+%<class>\LoadClass[12pt,oneside]{memoir}
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{ifluatex}
+\ifluatex
+\usepackage[utf8]{luainputenc}
+\else
+\fi
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[numbered]{hypdoc}
+\usepackage{xparse}
+\usepackage{amsmath}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+% 
+% \def\fileversion{v0.2}
+% \def\filedate{2014/03/18}
+%
+%\title{^^A
+%  \textsf{\jobname} --- University of Texas at Austin Thesis\thanks{^^A
+%    This file describes version \fileversion, last revised \filedate.^^A
+%  }^^A
+%}
+%\author{^^A
+%  Henry Schreiner\thanks{E-mail: henryiii@physics.utexas.edu}^^A
+%}
+%\date{Released \filedate}
+%
+%\maketitle
+%
+%\changes{v1.0}{2009/10/06}{First public release}
+%
+%\begin{abstract}
+% This is a class for building a UT thesis. It uses standard latex install procedures
+% for a single dtx file. Running lualatex on the dtx file will produce all needed files.
+% Running luatex on the dtx file will only produce neccisary files (not documentation).
+%\end{abstract}
+%
+%\section{Introduction}
+%
+% This is the U.T. Austin Doctoral Dissertation Format.
+%
+% First, set your graduation year with |\UTyear=Your year|.
+% If you are not going for a Ph.D., you will need to set |\renewcommand{\UTdegree}{Your Degree}| and |\renewcommand{\UTlongdegree}{Full Degree}|.
+%
+% Then, after starting your document normally, and setting author, etc., use
+% |\UTcopyrightlegend| to make a copyright page.
+%
+% Then, use the |UTCommittee| environment and |\UTaddsupervisor{}|, |\UTaddcosupervisor{}|, and |\UTaddcommittee{}| to add your committee members.
+%
+% Then, use |\UTtitlepage{Current Degree}{Month}| to make a title page.
+%
+%\section{Usage}
+%\subsection{Defines}
+%\iffalse
+%<cwl>\UTdegree
+%\fi
+%\DescribeMacro{\UTdegree} \indent
+% Redefine \cs{UTdegree} to set a new degree. Defaults to Ph.D. 
+%
+%\iffalse
+%<cwl>\UTlongdegree
+%\fi
+%\DescribeMacro{\UTlongdegree}
+% Redefine \cs{UTlongdegree} to set a new long degree description. Defaults to Doctor of Philosophy. 
+%
+%\iffalse
+%<cwl>\UTyear
+%\fi
+%\DescribeMacro{\UTyear}
+% This is a counter that holds the current year. Use |\UTyear=1234| to set the year to a different year.
+%
+%\subsection{Commands}
+%
+%\iffalse
+%<cwl>\UTcopyrightlegend
+%\fi
+%\DescribeMacro{\UTcopyrightlegend} \indent
+% Prints out a copyright legend page. Uses \cs{author} and \cs{UTyear}
+%
+%\iffalse
+%<cwl>\UTaddsupervisor{member}
+%\fi
+%\DescribeMacro{\UTaddsupervisor}
+% Adds a supervisor.
+%
+%\iffalse
+%<cwl>\UTaddcosupervisor{member}
+%\fi
+%\DescribeMacro{\UTaddcosupervisor}
+% Adds a cosupervisor (optional) 
+%
+%\iffalse
+%<cwl>\UTaddcommittee{member}
+%\fi
+%\DescribeMacro{\UTaddcommittee}
+% Adds a committee member \marg{member}.
+%
+%\iffalse
+%<cwl>\UTtitlepage{olddegree}{month}
+%\fi
+%\DescribeMacro{\UTtitlepage}
+% Adds a title page, using \cs{author}, \cs{title}, etc. You will need to use
+% your current degree for \marg{olddegree}, and your expected graduation month
+% for \marg{month}.
+%
+%
+%
+%\subsection{Environments}
+%
+%\iffalse
+%<cwl>\begin{UTabstract}{advisor}
+%<cwl>\begin{UTabstract}[s]{advisors}
+%<cwl>\end{UTabstract}
+%\fi
+%\DescribeEnv{UTabstract} \indent
+% This environment is for your abstract. You can pass in an
+% `|s|' optionally through \oarg{s} to add multiple advisors. The manitory
+% argument \marg{advisor} holds the advisor(s) names.
+%
+%\iffalse
+%<cwl>\begin{UTcommittee}
+%<cwl>\end{UTcommittee}
+%\fi
+%\DescribeEnv{UTcommittee}
+% This environment holds \cs{UTaddcommittee} names.
+%
+%\StopEventually{^^A
+%  \PrintChanges
+%  \PrintIndex
+%}
+%\section{Implementation}
+%\iffalse
+%<*class>
+%\fi
+%    \begin{macrocode}
+\RequirePackage{xparse}
+\RequirePackage{amsmath}
+\RequirePackage{etoolbox}
+\RequirePackage{setspace}
+
+\setlrmarginsandblock{1.25in}{1.25in}{*} % spine, edge
+\setulmarginsandblock{1.25in}{1.5in}{*} % {hupperi}{hloweri}{hratioi}
+\setheadfoot{.5in}{.5in} % Headheight, footskip
+\setheaderspaces{*}{.25in}{*} % headdrop, headsep, ratio
+
+\checkandfixthelayout
+\typeoutlayout
+
+% No headers
+\pagestyle{plain}
+
+% Nice "double" spacing (1.5, as allowed)
+\newcommand\UTSpacing{\OnehalfSpacing}
+\DeclareOption{double}{\renewcommand\UTSpacing{\DoubleSpacing}}
+\DeclareOption{single}{\renewcommand\UTSpacing{\SingleSpacing}}
+\ProcessOptions\relax
+\UTSpacing
+
+% Let's default to include section numbers if the author wants them (in document)
+\setsecnumdepth{subsubsection}
+
+% Custom number function that handles A,B,C etc.
+\def\UTNumToName#1{%
+\if!\ifnum9<1#1!\fi
+\NumToName{#1}\else#1\fi}
+
+% Adding proper numbering for chapters, appendix in table of contents
+\renewcommand\chapternumberline[1]{%
+   \@chapapp@head\@cftbsnum \UTNumToName{#1}\@cftasnum\afterchapternum}
+\renewcommand\cftchaptername{\chaptername~}
+\renewcommand{\cftappendixname}{\appendixname~}
+
+
+% Proper table of contents
+\renewcommand{\cftchapterfont}{}
+\renewcommand{\cftchapterdotsep}{\cftdotsep}
+\renewcommand{\cftchapterleader}{\normalfont\cftdotfill{\cftchapterdotsep}}
+\renewcommand{\cftchapterpagefont}{}
+
+% Space between the chapter lines
+\setlength\cftparskip{2ex}
+\setlength\cftbeforechapterskip{0em}
+\setlength\cftbeforesectionskip{0em}
+\renewcommand\insertchapterspace{}
+
+
+\cftsetindents{section}{2em}{0em}
+
+% Default to no number line (Easy to override)
+\let\thesisnumberline\numberline
+\renewcommand{\numberline}[1]{}
+
+
+% Figure list 
+\let\oldlistoffigures\listoffigures
+\def\thesislistoffigures{%
+	\clearpage
+	\SingleSpacing
+    \let\numberline\thesisnumberline
+    \oldlistoffigures
+    \renewcommand{\numberline}[1]{}
+    \UTSpacing
+    }
+\let\listoffigures\thesislistoffigures
+
+% Tablelist list 
+\let\oldlistoftables\listoftables
+\def\thesislistoftables{%
+	\clearpage
+	\SingleSpacing
+	\let\numberline\thesisnumberline
+	\oldlistoftables
+	\renewcommand{\numberline}[1]{}
+	\UTSpacing
+	}
+\let\listoftables\thesislistoftables
+
+% Proper chapters
+\renewcommand{\afterchapternum}{:~}
+\renewcommand{\chapnamefont}{\bfseries\Large\centering}
+\renewcommand{\chaptitlefont}{\chapnamefont}
+\setlength\beforechapskip{-\baselineskip}
+\renewcommand{\printchapternum}{\UTNumToName{\thechapter}}
+
+% Correct numbering style
+\numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+%    \end{macrocode}
+%
+% The following will override the table of contents to supply single spacing / double spaceing as required
+% To add section numbers (non-standard), follow the command with a `.`.
+% 
+% \begin{macro}{\tableofcontents}
+%    \begin{macrocode}
+\let\oldtableofcontents\tableofcontents
+\RenewDocumentCommand \tableofcontents { s t. } {%
+	\clearpage
+	\SingleSpacing
+	\IfBooleanTF #2 {%
+		\let\numberline\thesisnumberline
+		\cftsetindents{section}{1em}{2em}
+		\oldtableofcontents*
+		\cftsetindents{section}{1em}{0em}
+		\renewcommand\numberline[1]{}
+	}{%
+	    \renewcommand\numberline[1]{}
+	    \oldtableofcontents*
+    }
+    \UTSpacing
+}
+%\end{macro}
+%
+%\begin{macro}{\UTdegree}
+%    \begin{macrocode}
+\newcommand{\UTdegree}{Ph.D.}
+%    \end{macrocode}
+%\end{macro} 
+%
+%\begin{macro}{\UTlongdegree}
+%    \begin{macrocode}
+\newcommand{\UTlongdegree}{Doctor of Philosophy}
+%    \end{macrocode}
+%\end{macro} 
+%
+%\begin{macro}{\UTyear}
+%    \begin{macrocode}
+\newcount\UTyear
+\UTyear=\year
+%    \end{macrocode}
+%\end{macro} 
+%
+%\begin{macro}{\UTcopyrightlegend}
+%    \begin{macrocode}
+\DeclareDocumentCommand{\UTcopyrightlegend}{  }{%
+\begin{titlingpage}
+\begin{vplace}
+\centering\Large\bfseries
+Copyright\\
+by\\
+\theauthor\\
+\the\UTyear
+\end{vplace}
+\end{titlingpage}}
+%    \end{macrocode}
+%\end{macro} 
+%
+%\begin{macro}{\UTaddcommittee}
+%    \begin{macrocode}
+\DeclareDocumentCommand{\UTaddcommittee}{ m }{
+\vskip 3em
+\hrule
+\vskip .4em
+#1
+
+}
+%    \end{macrocode}
+%\end{macro} 
+%
+%
+%\begin{macro}{\UTaddcommittee}
+%    \begin{macrocode}
+\DeclareDocumentCommand{\UTaddsupervisor}{ m }{
+\vskip 3em
+\hrule
+\vskip .4em
+#1, Supervisor
+}
+%    \end{macrocode}
+%\end{macro} 
+%
+%
+%\begin{macro}{\UTaddcommittee}
+%    \begin{macrocode}
+\DeclareDocumentCommand{\UTaddcosupervisor}{ m }{
+\vskip 3em
+\hrule
+\vskip .4em
+#1, Co-Supervisor
+}
+%    \end{macrocode}
+%\end{macro} 
+%
+%
+%
+%\begin{macro}{\UTtitlepage}
+% This makes a title page. Spacing was manually made to match guide.
+%    \begin{macrocode}
+\DeclareDocumentCommand{\UTtitlepage}{m m}{
+\begin{titlingpage}
+\begin{vplace}
+\centering
+{
+\bfseries
+\thetitle
+}
+
+\vskip 1em
+
+by
+
+\vskip 1em
+
+{
+\bfseries
+\theauthor, #1
+
+\vskip 3em
+Dissertation
+}
+
+Presented to the Faculty of the Graduate School of\\
+The University of Texas at Austin\\
+in Partial Fulfillment\\
+of the Requirements\\
+for the degree of\\
+{\bfseries \UTlongdegree}
+
+\vskip 3em
+
+The University of Texas at Austin\\
+#2, \the\UTyear
+\end{vplace}
+\end{titlingpage}}
+%    \end{macrocode}
+%\end{macro} 
+%
+% \begin{environment}{UTabstract}
+% This was modifided to match the required abstract guidelines.
+%    \begin{macrocode}
+\DeclareDocumentEnvironment{UTabstract}{ O{} m  }{ %
+\begin{center}
+{\bfseries\thetitle}
+
+\vskip 2em
+
+\theauthor, \UTdegree
+
+The University of Texas at Austin, \the\UTyear
+
+\vskip 2em
+
+Supervisor#1: #2
+
+\vskip 2em
+
+\end{center}
+\indent
+}{}
+%    \end{macrocode}
+% \end{environment}
+%
+%
+%
+%
+% \begin{environment}{UTcommittee}
+% This adds the committee page.
+%    \begin{macrocode}
+\DeclareDocumentEnvironment{UTcommittee}{ }{ %
+\begin{titlingpage}
+\bfseries
+\begin{center}
+\begin{SingleSpace}
+The Dissertation Committee for \theauthor\ certifies that this is the approved version of the following dissertation:
+\end{SingleSpace}
+\vskip 2.5em
+\large
+\thetitle
+\end{center}
+\vskip 5em
+\begin{flushright}
+\begin{minipage}[b]{3in}
+\begin{flushleft}
+Committee:
+}{ %
+\end{flushleft}
+\end{minipage}
+\end{flushright}
+\end{titlingpage}}
+%    \end{macrocode}
+%\end{environment}
+%
+%
+%    \begin{macrocode}
+%    \end{macrocode}
+%\iffalse
+%</class>
+%\fi
+%\CheckSum{256}
+%\Finale

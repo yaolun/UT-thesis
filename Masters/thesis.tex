@@ -1,0 +1,1857 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% 
+%%% File: utthesis2.doc, version 2.0jab, February 2002
+%%% 
+%%% Based on: utthesis.doc, version 2.0, January 1995
+%%% =============================================
+%%% Copyright (c) 1995 by Dinesh Das.  All rights reserved.
+%%% This file is free and can be modified or distributed as long as
+
+%%% you meet the following conditions:
+%%% 
+%%% (1) This copyright notice is kept intact on all modified copies.
+%%% (2) If you modify this file, you MUST NOT use the original file name.
+%%% 
+%%% This file contains a template that can be used with the package
+%%% utthesis.sty and LaTeX2e to produce a thesis that meets the requirements
+%%% of the Graduate School of The University of Texas at Austin.
+%%% 
+%%% All of the commands defined by utthesis.sty have default values (see
+%%% the file utthesis.sty for these values).  Thus, theoretically, you
+%%% don't need to define values for any of them; you can run this file
+%%% through LaTeX2e and produce an acceptable thesis, without any text.
+%%% However, you probably want to set at least some of the macros (like
+%%% \thesisauthor).  In that case, replace "..." with appropriate values,
+%%% and uncomment the line (by removing the leading %'s).
+%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% STH: Conventions are adapted from _Guide to LaTeX, 4th ed. Kopka, Daly 2004
+% To create thesis.pdf, run RunLatex script
+% TODO flags tasks yet to be done
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% PREAMBLE
+% 
+
+\documentclass[11pt]{report}     %% LaTeX2e document.
+\usepackage{utthesis2}           %% Preamble.
+
+\mastersthesis                   %% Uncomment one of these; if you don't
+% \phdthesis                     %% use either, the default is \phdthesis.
+
+% \thesisdraft                   %% Uncomment this if you want a draft
+\leftchapter                     %% Uncomment one of these if you want
+% \singlespace                   %% Uncomment one of these if you want
+% \onehalfspacing
+\doublespace                     %% or double-spacing; the default is
+                                 %% \oneandhalfspace, which is the
+                                 %% minimum spacing accepted by the
+                                 %% Graduate School.
+
+\renewcommand{\thesisauthor}{Kevin Carl Gullikson}    %% Your official UT name.
+\renewcommand{\thesismonth}{May}      %% Your month of graduation.
+\renewcommand{\thesisyear}{2012}      %% Your year of graduation.
+\renewcommand{\thesistitle}{Towards Spectroscopic Detection of Low\\
+Mass Ratio Stellar Binary Systems.}
+%% The title of your thesis; use mixed-case.
+\renewcommand{\thesisauthorpreviousdegrees}{B.S.}
+%% Your previous degrees, abbreviated;
+%% separate multiple degrees by commas.
+\renewcommand{\thesissupervisor}{Sarah Dodson-Robinson, Michael Endl}
+%% Your thesis supervisor; use mixed-case
+%% and don't use any titles or degrees.
+%\renewcommand{\thesiscosupervisor}{Michael Endl}
+%% Your PhD. thesis co-supervisor; if any.
+%% Use mixed case and don't use any titles
+%% or degrees. Uncomment if you
+%% have a co-supervisor.
+%% (Ignored for Master's)
+
+
+%\renewcommand{\thesiscommitteemembera}{Michael Endl}
+\renewcommand{\thesiscommitteemembera}{Daniel Jaffe}
+% \renewcommand{\thesiscommitteememberc}{}
+% \renewcommand{\thesiscommitteememberd}{}
+% \renewcommand{\thesiscommitteemembere}{}
+% \renewcommand{\thesiscommitteememberf}{}
+% \renewcommand{\thesiscommitteememberg}{}
+% \renewcommand{\thesiscommitteememberh}{}
+% \renewcommand{\thesiscommitteememberi}{}
+%% Define your other committee members here;
+%% use mixed case and don't use any titles
+%% or degrees.  Uncomment as many
+%% as neccessary. (Ignored for Master's)
+
+\renewcommand{\thesisauthoraddress}{kgulliks@astro.as.utexas.edu}
+%% Your permanent address; use "\\" for
+%% linebreaks.
+
+% \renewcommand{\thesisdedication}{...\\ ...}
+%% Your dedication, if you have one; use
+%% "\\" for linebreaks.
+
+%%% The following commands are all optional, but useful if your requirements
+%%% are different from the default values in utthesis.sty.  To use them,
+%%% simply uncomment (remove the leading %) the line(s).
+
+\renewcommand{\thesiscommitteesize}{3}
+%% Uncomment this only if your thesis
+%% committee does NOT have 5 members
+%% for \phdthesis or 2 for \mastersthesis.
+%% Replace the "..." with the correct
+%% number of members.
+
+% \renewcommand{\thesisdegree}{...}  %% Uncomment this only if your thesis
+%% degree is NOT "DOCTOR OF PHILOSOPHY"
+%% for \phdthesis or "MASTER OF ARTS"
+%% for \mastersthesis.  Provide the
+%% correct FULL OFFICIAL name of
+%% the degree.
+
+% \renewcommand{\thesisdegreeabbreviation}{...}e
+%% Use this if you also use the above
+%% command; provide the OFFICIAL
+%% abbreviation of your thesis degree.
+
+% \renewcommand{\thesistype}{...}    %% Use this ONLY if your thesis type
+%% is NOT "Dissertation" for \phdthesis
+%% or "Thesis" for \mastersthesis.
+%% Provide the OFFICIAL type of the
+%% thesis; use mixed-case.
+
+% \renewcommand{\thesistypist}{...}  %% Use this to specify the name of
+%% the thesis typist if it is anything
+%% other than "the author".
+
+\setcounter{tocdepth}{1}
+
+% PACKAGES
+% 
+
+% TODO: remove aastex_hack because of apj.bst?
+\usepackage{aastex_hack}
+\usepackage{deluxetable, enumerate, multicol}
+\usepackage{graphicx, subfigure, epsfig}
+% \usepackage{flafter}        % forces float to come after references to the float
+\usepackage{amsmath, amsfonts, amssymb, amsthm, amsopn, amsbsy}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage[stable]{footmisc}
+% TODO: make citations like ApJ
+\usepackage{natbib}
+\usepackage{hyperref}            % load last because LaTeX kernal is redefined
+\usepackage{longtable}
+\hypersetup{
+  pdftitle=\thesistitle, pdfauthor=\thesisauthor,
+  pdfkeywords={}
+  pdfpagemode=UseOutlines,
+  bookmarks, bookmarksopen,
+  pdfstartview=FitH,
+  colorlinks, linkcolor=black, citecolor=black, urlcolor=black
+}
+
+% % TODO: get astronat working
+% % STH: from
+% % http://ads.harvard.edu/pubs/bibtex/astronat/doc/html/astronat_3.html#SEC7
+% \citestyle{aa}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% NEW COMMANDS
+% 
+\newcommand{\msun}{\ensuremath{\,\rm M_{\odot}}\xspace}  % solar mass units of a number
+\newcommand{\lsun}{\ensuremath{\,\rm L_{\odot}}\xspace}  % solar luminosity units of a number
+\newcommand{\rsun}{\ensuremath{\,\rm R_{\odot}}\xspace}  % solar radii units of a number
+\newcommand{\zsun}{\ensuremath{\,\rm Z_{\odot}}\xspace}        
+\newcommand{\hh}{\ensuremath{\mathrm{H}_2}\xspace}     % molecular hydrogen
+
+\newcommand{\about}{\ensuremath{\sim}}
+
+\newcommand{\RefTab}[1]{\mbox{Table~\ref{#1}}}         % reference a single table
+\newcommand{\RefFig}[1]{\mbox{Figure~\ref{#1}}}        % reference a single figure
+\newcommand{\RefEq}[1]{\mbox{Equation~\ref{#1}}}       % reference a single figure
+\newcommand{\RefCh}[1]{\mbox{Chapter~\ref{#1}}}        % reference a single chapter
+\newcommand{\RefSec}[1]{\mbox{\S~\ref{#1}}}            % references a single section
+\newcommand{\RefApp}[1]{\mbox{Appendix~\ref{#1}}}      % reference a single appendix
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% DEFINITIONS
+% 
+% Journal references
+% TODO: Are the below definitions necessary with aastex_hack.sty?
+% \def\apjl{ApJL}
+% \def\apj{ApJ}
+% \def\apjs{ApJS}
+% \def\mnras{MNRAS}
+% \def\araa{ARAA}
+% \def\aj{AJ}
+% \def\aap{A\&A}
+% \def\aaps{A\&A Suppl.}
+% \def\nat{Nature}
+% \def\pasp{PASP}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% BODY
+% 
+
+\begin{document}
+
+\thesiscopyrightpage                 %% Generate the copyright page.
+% TODO: modify thesis signature page and/or thesis certification page
+% to standards as of Sep 2010
+% TODO: address error message
+\thesissignaturepage              %% Generate the Master's signature page.
+%\thesiscertificationpage             %% Generate the PhD. certification page.
+\thesistitlepage                     %% Generate the title page.
+
+% \thesisdedicationpage                %% Generate the dedication page.
+  \begin{thesisacknowledgments}        %% Use this to write your
+                                                            %% acknowledgments; it can be anything
+                                                            %% allowed in LaTeX2e par-mode.
+    
+We would like to acknowledge Andreas Seifahrt for his help with the
+telluric modeling procedure, Rob Robinson with his help in the
+statistical aspects of this work, and Travis Barman for supplying us
+with high resolution planetary spectra models. This  research has made use of the 
+following online resources: the Exoplanet Orbit Database
+and the Exoplanet Data Explorer at exoplanets.org, the SIMBAD database and the VizieR
+catalogue access tool at CDS, Strasbourg, France, and the ESO Science 
+Archive Facility. Funding for this work was provided in part by the University
+of Texas College of Natural Sciences through a start-up grant to Sarah Dodson-Robinson.
+
+  
+\end{thesisacknowledgments}
+
+\begin{thesisabstract}               %% Use this to write your thesis
+Detection of the emission from the secondary component in a binary system can be extremely challenging, but equally rewarding. In the case of intermediate to high-mass binaries, detection of close companions can inform formation theories. In the extreme low mass-ratio case, where the secondary component is in fact a planet, detection of the emission in high resolution spectroscopy can be used to determine the true planet mass. In this thesis, we describe a technique to detect the thermal emission from the secondary component of a low mass-ratio binary system. We apply this technique to archived observations of early B-type stars using VLT/CRIRES, and simulate future observations of planetary systems with IGRINS, a near-infrared spectrograph being built now. 
+\end{thesisabstract}
+
+\tableofcontents               %% Generate table of contents.
+% \listoftables                      %% Uncomment this to generate list
+%% of tables.
+% \listoffigures                     %% Uncomment this to generate list
+%% of figures.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% MAIN TEXT
+% 
+
+
+\chapter{Introduction}           %% Begin your thesis text here; follow
+\label{Intro}                    %% the report style and group your text
+                                 %% in chapters, sections, etc.
+
+Since the first discovery of a planet orbiting another star in 1995 \citep{Mayor1995}, almost 600 exoplanets have been found \citep[from exoplanets.org:][]{exoplanet}. Most of these planets, found by measuring the radial velocity of the parent star, have only minimum masses and unknown inclinations. This mass-inclination degeneracy can be resolved by measuring the radial velocity of both the parent star and the orbiting planet.
+
+In this paper, we describe a technique to detect the thermal emission from a planet using high signal-to-noise, high resolution near-infrared spectroscopy. We apply this technique to future observations using the IGRINS instrument, scheduled to begin science operations on the Harlan J Smith Telescope at McDonald Observatory in 2013. 
+
+We apply a similar technique to search for $\sim 1 M_{\odot}$ stars orbiting early B-stars (B0-B5), using archived VLT/CRIRES observations. Such companions may have formed by gravitational instability in the circumstellar disk, in a scaled-up version of a massive planet formation theory \citep[see e.g.][]{Kratter2006, Stamatellos2011}. The full scientific motivation for both projects are given within their respective chapters.
+
+
+
+
+\chapter{Detection of Low Mass-Ratio Stellar Binary Systems}
+\section{Scientific Justification}
+O- and B-type stars are often found in binary or
+multiple systems: \cite{Mason2009} estimate the high-mass\footnote{In
+ this chapter, we will use 'high-mass' to describe primary stars with $M \gtrsim 5M_{\odot}$,
+ and 'low-mass' to describe primary stars with $M\lesssim 1 M_{\odot}$} star multiplicity
+fraction to be at least $70\%$ in OB star clusters. Yet the multiplicity fraction of high-mass stars may be underestimated due to the difficulty of detecting low-mass secondary stars \citep{Sana2011}.  While the mass-ratio distribution
+is well known for high-mass binaries with mass-ratio $q > 0.2$, there are almost no
+constraints for low mass-ratio binaries. Here we define low
+mass-ratios to be those with $q \equiv M_s/M_p < 0.2$, where $M_s$
+is the mass of the secondary (lower mass binary component), and
+$M_p$ is the mass of the primary (higher mass binary component).
+However, binaries of low mass-ratio are important probes of star formation since they may have
+formed in a different way than approximately equal-mass binaries.
+
+
+\subsection{Binary Formation in High-Mass Stars}
+\label{sec:formation}
+The primary method of forming binary systems is thought to be core fragmentation
+\citep[see e.g.][]{Boss1979, Boss1986, Bate1995}. As a molecular cloud
+begins isothermally collapsing, its density increases, causing the
+Jeans mass to decrease. Thus, an initially Jeans-mass collapsing core
+can fragment into smaller objects. Core fragmentation will initially yield binaries with separations
+$10 AU < a < 1000 AU$ , which may move closer by interacting
+with the surrounding gas, a circumbinary disk, or through dynamical
+interactions with other nearby stars \citep{BBB2002}. For $\sim 1
+M_{\odot}$ primary stars, the observed mass-ratio distribution is well fit by assuming
+both components of the binary are chosen randomly from the stellar
+initial mass function, and later evolve through
+accretion and dynamical interactions \citep{Kroupa2003}. Assuming
+independent component masses chosen from the IMF, a binary with a $10 M_{\odot}$ primary would
+most often have a $0.1 M_{\odot}$ secondary, giving an initial mass
+ratio near $q=0.01$. The unmodified mass-ratio distribution of
+high-mass binaries would therefore strongly favor low mass
+ratios. However, accretion of high specific angular-momentum gas
+from either the collapsing molecular core or
+the circumbinary disk will preferentially be captured by the
+lower-mass companion, driving the binary mass-ratio toward unity and
+decreasing the orbital separation
+\citep{Bate2000, BonnellBate2005}. Additionally, dynamical
+interactions tend to replace low-mass binary companions with higher-mass ones.
+Over time, these processes tend to create high-mass binary systems 
+with nearly equal masses and small separations \citep{BBB2002}. Both
+accretion and dynamical interactions tend to pump up the eccentricity
+of the system \citep{BonnellBate2005}.
+
+A second method to form binary systems is disk instability
+\citep[see e.g.][]{Kratter2006, Stamatellos2011}. In
+this scenario, the fragment forms in an unstable circumstellar disk
+with an initial separation of $\sim 100 AU$ and initial mass-ratios
+near $q \sim 0.03$, similar to the core fragmentation case
+\citep{Kratter2006}. The final mass-ratio is expected to rise, but not
+as significantly as in the core fragmentation scenario in which the
+fragment can form sooner. Typical mass-ratios near $q \sim 0.1$ are expected.
+
+The above argument is supported by several studies. A semi-analytical treatment of embedded protostellar disks by
+\cite{Kratter2008} finds that massive stars with $M > 2M_{\odot}$ maintain $0.01 - 0.1
+M_{\odot}$ in orbiting fragments after about 2 Myr. \cite{Krumholz2007}
+simulate a $100 M_{\odot}$ collapsing core for a much shorter time (20 kyr),
+but also find that the disk fragments and that the final fragment mass
+ratio is $q \approx 0.1$. Work by \cite{Clarke2009} indicates that as
+mass is transported inwards onto the star, causing the disk to expand to
+conserve angular momentum, the outer disk can become unstable. This
+instability can lead to a delayed disk fragmentation,
+with a fragment mass-ratio in the range $0.1 < q <
+0.5$. The simulations by \cite{Clarke2009} were done for a $\sim
+1M_{\odot}$ primary star, and the delayed fragmentation occured after
+about $10^5$ years. Delayed fragmentation may not be possible in disks surrounding
+high-mass stars, as the time at which fragmentation occurs is
+comparable to the disk dispersal timescale \citep{Klahr2006}. However,
+if it does occur, the similar fragmentation and dispersal timescales suggest that the fragment
+would not undergo significant accretion or migration and would leave a
+wide binary ($a \approx 100 AU$) with mass-ratio in the range $0.1 < q <
+0.5$.
+
+Unfortunately, there are no true binary population synthethis
+simulations for high-mass binary systems formed by either mechanism
+discussed above. The lack of population synthethis models is driven
+by computational issues; a collapsing
+cloud that reproduces the stellar mass function \emph{and} generates
+enough high-mass stars to meaningfully analyze the binary statistics
+would have to be very massive and therefore difficult to
+simulate. Disk fragmentation simulations often either stop the
+simulation once a fragment forms rather than follow its mass accretion
+history \citep[e.g.][]{Boss2011, Krumholz2007}, or lack high enough resolution to follow the secondary very
+near the star \citep[e.g.][]{BonnellBate2005}. Therefore, we can not
+directly compare the predictions of core fragmentation and disk fragmentation in a quantitative
+sense. However, from the arguments above we can draw the general conclusion that disk
+fragmentation tends to produce lower-mass companions than core
+fragmentation. For this reason, probing the low mass-ratio regime can
+provide information on the relative importance of both scenarios in
+forming high-mass binary systems, and may help constrain models once
+computational power increases.
+
+In addition to binary star formation, disk instability is often invoked as a way
+to form planets of a few Jupiter masses orbiting $\sim 1 M_{\odot}$ stars.
+While the massive star formation process as a
+whole may not simply be a scaled up version of low-mass star
+formation \citep{Zinnecker2007}, the process of disk fragmentation may
+be. One expects that disks around high-mass stars, with correspondingly higher accretion rates
+and more mass, fragment more often than disks around low-mass stars \citep{Boss2011, Boss2006,
+  Sally2009, Kratter2006}. Thus, if disk fragmentation plays an important role
+in high-mass star formation, it may also play a role in low-mass star
+formation by creating $\sim 10M_{Jup}$ planets and substellar companions.
+
+\subsection{Period, mass-ratio, and Eccentricity Distributions in
+  OB-star binaries}
+There are several observational results that illuminate asects of high-mass
+binary formation. \cite{Sana2011} review the OB-star spectroscopic binary
+period, mass-ratio, and eccentricity distributions in several nearby
+($d \lesssim 3$ kpc) O-star rich clusters. 
+They find that $50-60\%$ of the secondary stars have periods less than
+10 days, and $55-60\%$ of their sample have an
+eccentricity $e < 0.2$. 
+%The cumulative period distribution
+%has traditionally been described with an \"{O}pik Law, a period
+%distribution that is flat in logarithmic space. However,
+%\cite{Sana2011} find that the distribution is better fit by a broken
+%\"{O}pik Law with a break near 10 days. 
+The binary mass-ratio distribution found by \cite{Sana2011} is
+consistent with a uniform distribution in the range $0.2 < q < 1$. Due to the ifficulty in observing low
+mass-ratio binary systems, it is unknown how far below $q = 0.2$ this
+distribution might extend.
+
+The observed predominance of short-period binary systems agrees well with predictions
+from both the disk instability and core fragmentation scenario. 
+The flat mass-ratio distribution suggests that both formation mechanisms play a role in binary
+star formation, with disk instability contributing more low-mass companions and core fragmentation 
+contributing more high-mass companions. More observations of the low-mass end of the distribution
+are needed in order to more fully constrain both theories.
+
+
+
+\subsection{Observing low mass-ratio binaries}
+\label{sec:otherobs}
+Detection of OB-star binaries with mass-ratio $q \approx 0.1$ or lower is very
+difficult, since the ratio of the secondary flux $F_s$ to the primary
+flux $F_p$ is $F_s/F_p \sim 10^{-3}$ or lower in the V-band. Imaging surveys
+can detect such contrast ratios for wide orbits, but lose sensitivity
+as the separation decreases below about $1^{\prime\prime}$
+\citep[e.g.][]{Maiz2010}. Spectroscopic binary surveys do well for
+short-period systems where a full orbit can be mapped in a reasonable
+amount of time, but lose sensitivity for periods greater than about one year
+\citep[e.g.][]{Sana2009, Evans2010}. However, low-mass companions ($q \lesssim
+0.2$), which induce a small reflex motion on the primary and are too
+faint to detect in the V-band, are very difficult to find with
+traditional spectroscopic surveys.
+
+\cite{Evans2011} describe a method that is sensitive to such low-mass
+companions to late B-type primary stars. They observed the open cluster Trumpler 16 using
+X-ray imaging, and found that several late B-stars emit X-rays with a
+luminosity, temperature, and variability consistent with T-Tauri stars. Since magnetically confined wind shock models do
+not predict that stars with type later than about B3 can emit X-rays
+\citep{Gagne1997}, these X-ray detections
+are interpreted as evidence that a young FGK-type star is forming
+around the B-star. \cite{Evans2011} find a significant number of low mass-ratio
+companions, and set the multiplicity fraction at $39\%$. This value is
+a lower limit, but the authors believe that the true value is not much
+above $39\%$.  Unfortunately, X-ray imaging is not effective for
+primary star spectral types earlier than B3, which are also strong
+x-ray emitters \citep{Gagne1997} and will drown out any companions.
+
+In this chapter, we introduce a technique that is sensitive to young binary
+systems with secondary temperatures $4000 $K$ \lesssim T_{\rm eff} \lesssim
+6000 $K. For early B-type primaries with ages $\sim 15$ Myr, these
+temperatures correspond to mass-ratios $q \approx 0.05-0.3$, right
+where we expect to see binaries formed by disk instability (see
+section \ref{sec:formation}). Rather
+than attempting to detect the reflex motion of the parent
+star as in exoplanet searches and SB1 binaries, we attempt to directly
+detect the spectrum of the young low-mass companion using high
+signal-to-noise, high-resolution data. Since this is a spectroscopic method, it is equally
+sensitive to all separations within the slit width, which is up to $\sim 900$ AU for targets within a few kpc. In addition, there
+is a multitude of archived B-star observations in the near-infrared,
+where they are used as telluric standard stars to
+remove the absorption spectrum of the Earth's atmosphere (telluric
+lines). In this chapter, we describe a search for young F5-K9 type companions in
+archived VLT/CRIRES spectra of 34 early B-type stars.
+
+In section \ref{sec:newmethod} we describe the direct detection method in 
+more detail. Section \ref{sec:sample} describes the B-star sample we use in this work.
+Section \ref{sec:reduction} contains the data reduction and telluric correction methods. 
+We summarize our results in section \ref{sec:results}. We examine the
+completeness of our sample in section \ref{sec:completeness} and put
+limits on the multiplicity fraction as a function of mass-ratio in
+section \ref{sec:multiplicity}. Finally, we summarize our results and
+their significance in section \ref{sec:conclusions}.
+
+
+\section{Direct Spectral Detection Method}
+\label{sec:newmethod}
+We describe here our method to detect the emission from an
+approximately solar-mass star orbiting an early B-type star, which we
+will hereafter call the direct spectral detection method. The basis of
+this method is to cross-correlate a high signal-to-noise ratio B-star
+spectrum with a synthetic F,G, or K star spectrum. If a low-mass star
+with such a spectrum is orbiting the B-star, we can expect to find a peak
+in the cross-correlation function at the radial velocity corresponding to
+the low-mass star's motion. A peak in the cross-correlation
+function should appear even if the
+flux from the low-mass star is comparable to or even slightly less than the noise level in the
+spectrum. Figure \ref{method} illustrates the approximately limiting
+case for the flux ratio. The top panel shows a fully reduced CRIRES spectrum of Hip 108975 (see section \ref{sec:reduction}) in
+black, and a model spectrum for an $0.9 M_{\odot}$ star. We used
+evolutionary tracks published by \cite{Landin2008} to evolve the secondary star
+to 50.1 Myr, the age of the system \citep{Tetzlaff2010}, in order to determine the flux
+ratio between the primary and secondary. The secondary star model was then added to
+the telluric-corrected B-star spectrum at two different velocities. It is clear that the model spectrum has an amplitude much smaller
+than the noise.  Nonetheless, the bottom two panels show that a cross-correlation will
+have a peak with high significance at the velocity of the secondary star.
+
+
+
+A careful choice of the wavelength region is critical for the direct spectral 
+detection method. First, we want a wavelength region where the B-star spectrum
+is entirely continuum. Since B-stars have few spectral lines, it is
+easy to find a such a spectral region. Secondly, we want a region where the low-mass star
+would have many closely spaced, strong lines. The more lines there are
+in the low-mass star, the stronger the peak will be in the
+cross-correlation function. Finally, we want a spectral region where the
+flux ratio between the low-mass and the high-mass star is maximized.
+It is not helpful to go much redder than a few microns for  
+companions with $T>4000$K, because both the high-mass and
+the low-mass star are firmly in the Rayleigh-Jeans limit by this
+point, where the flux ratio is approximately constant. For this project,
+we choose wavelengths from $2300-2400$ nm, which is the CO $\Delta\nu = 0-2$
+bandhead in the low-mass star. 
+
+There is both a lower and upper mass detection
+limit. Secondary stars that are too cool will be too faint, and any
+signal will be lost in the noise. Additionally, a more massive (and
+hotter) primary star will decrease the flux ratio, and push the lower
+mass limit up. On the other end, secondary
+stars that are too hot will dissociate CO, destroying the bandhead
+that we are looking for. The temperature and size of the secondary star will
+depend on its age as well as its mass since it will still be
+evolving towards the Main Sequence during the lifetime of the
+B-star. The exact mass sensitivity will thus depend on the age,
+primary star mass, and signal-to-noise ratio of the system being observed. 
+
+The detector resolution is also important for the direct spectral detection
+method. Deeper lines, providing more contrast from the
+continuum, are easier to detect than broad, shallow lines. In
+addition, narrow spectral lines will result in a stronger, narrower peak in the
+cross-correlation function, which is most sensitive to the steep line
+edges. Therefore, we want the spectral lines in the low-mass companion
+to be as deep and narrow as possible. The intrinsic width of CO bandhead lines is
+roughly 5-7 km s$^{-1}$. In order for the observed line width to be this
+small, we need the resolution of the instrument to be $R =
+\lambda/\Delta \lambda \gtrsim 50000$. 
+
+There are two main difficulties with the direct spectral detection method: 
+telluric line removal and the low flux ratio between the primary and secondary
+star. Figure \ref{telluric} shows the transmittance through the
+Earth's atmosphere (the telluric spectrum) in the wavelength range we
+are interested in. Most of the spectral lines are from methane, with a
+few deep water lines towards the red end
+of the range shown (ee section \ref{sec:reduction} for details on the
+telluric line removal). The low flux ratio makes the telluric
+contamination especially troublesome, since the telluric lines are
+stronger than the lines in the companion star spectrum. The flux ratio of $F_s/F_p
+\sim10^{-2}$ effectively sets a lower limit on the signal-to-noise
+ratio for which the direct spectral detection method is possible. 
+Any flux coming from a low-mass star will be completely buried
+in the Poisson noise for spectra with SNR $\ll100$. Removal of the 
+telluric contamination will add more noise to the spectrum, so a spectrum
+should have SNR of a few hundred \emph{before telluric line removal}
+to have a good chance of detecting a companion.
+
+
+
+\section{Star Sample}
+\label{sec:sample}
+O- and B-type stars are commonly used in the near-IR as telluric
+standard stars. Astronomers will observe their science targets, and
+then move to an OB-type star. Since O- and B-type stars have few
+spectral lines relative to cooler stars, most of the observed
+spectral lines will be from the absorption of Earth's atmosphere
+(telluric absorption). Therefore, these stars provide an empirical
+estimate of the telluric spectrum; division of the science spectrum by
+the normalized standard star spectrum will mostly remove the telluric
+lines. 
+
+Since O- and B-type stars are commonly used as above, there are
+many high signal-to-noise ratio (SNR $\gtrsim 100$)
+observations of such stars in archived data. We used the VLT/CRIRES
+archive in this project. CRIRES is a high
+resolution ($R = \lambda / \Delta \lambda \approx 100000$) infrared
+spectrograph on the VLT at Paranal Observatory. The detector consists of four
+1024x512 ccd chips that are mosaiced end-to-end, and
+the spectrum falls across them. There are several wavelength settings
+available, which determine what parts of the spectrum fall on each 
+chip. For wavelength settings in the CO
+bandhead near 2300 nm, each chip will hold rougly 10 nm of spectrum
+with roughly 1-2 nm gaps between the chips.
+
+To generate the sample, we started with all main sequence O9-B5 stars 
+with CRIRES observations from 2300-2400 nm. We then excluded any shell stars, which have circumstellar disks \citep{Porter2003} that may create
+false positives. Table \ref{tab:sample} shows the complete sample used in this
+project. The spectral types and ages were obtained from a catalog of nearby
+young stars \citep{Tetzlaff2010}. The one exception is Hip 97611, which was
+not in \cite{Tetzlaff2010}. For this star, the age was taken from
+\cite{Westin1985} and the spectral type from the Simbad database\footnote{\url{http://simbad.u-strasbg.fr/simbad/}}
+. The distances to all stars were
+determined from parallaxes given in the Simbad database. The maximum
+separation column estimates the approximate maximum separation of the binary
+orbit we are sensitive to, assuming a seeing of 0.8'', typical of
+Paranal Observatory. The median of the maximum separations to which we are sensitive is 124
+AU.  The final column gives the number of distinct observations of the
+star. We count all nodding positions taken on a given night with the same 
+detector wavelength setting as one observation.
+
+%Note that three stars in our sample were identified as runaway stars
+%by \cite{Tetzlaff2010}: Hip 108975, Hip 68002, and Hip 94385. Because
+%runaway stars are thought to be kicked out of their birth cluster by
+%some dynamical encounter with another star, the multiplicity fraction
+%is expected to be lower than among cluster stars
+%\citep{Zinnecker2007}. \cite{Mason2009} confirmed this observationally
+%for O-stars. However, tight binaries should be less prone to
+%disruption by a third body. The \emph{close} binary fraction should be
+%the same for cluster stars and runaway stars.
+
+
+
+
+\section{Data Reduction and Telluric Correction}
+\label{sec:reduction}
+The data reduction was done using standard methods in
+IRAF\footnote{IRAF is distributed by the National Optical Astronomy Observatories,
+    which are operated by the Association of Universities for Research
+    in Astronomy, Inc., under cooperative agreement with the National
+    Science Foundation.}. All observations were taken in an AB or ABBA nodding
+pattern. For each set of AB nods, A-B and B-A frames were made to
+remove any atmospheric emission lines and dark current. The resulting
+difference images were then treated to a quadratic nonlinearity correction, using
+coefficients made available by the CRIRES
+team\footnote{\url{http://www.eso.org/observing/dfo/quality/CRIRES/pipeline/pipe_calib.html}}. 
+The corrected frames were then divided by a normalized flat-field. Due
+to the slit curvature, the spectrum can shift by up to a pixel in
+the dispersion direction between the A and B nod positions. Therefore,
+combining the 2D frames before extraction can reduce the spectral
+resolution and affect the line shapes. For this reason, we
+combined the nodding positions only after the wavelength
+calibration and telluric correction. Each nod position was extracted using the 
+optimal algorithm in the apall task in IRAF. The spectra were wavelength 
+calibrated using a model telluric
+spectrum generated with the atmospheric modeling code
+LBLRTM\footnote{\url{http://www.rtweb.aer.com/lblrtm_description.html}}
+\citep{Clough2005}.
+
+
+For telluric correction, we used a similar procedure to the one outlined by
+\cite{Seifahrt2011}. The atmosphere modeling code
+LBLRTM was used to generate a synthetic telluric
+absorption spectrum. The abundances of water,
+methane, and carbon monoxide were fit using a Python implementation of
+a Levenberg-Marquardt nonlinear least squares fitting algorithm. The
+Levenberg-Marquardt fit also refined the wavelength solution to the
+telluric model, fit the continuum, and fit the resolution of the
+spectrograph with a Gaussian profile. The FWHM of the profile was the
+only free parameter in the resolution fit.
+
+The LBLRTM code expects a model atmosphere, which contains the
+temperature, pressure, and abundance of 30 molecules as a
+function of atmospheric height. For the majority of molecular species,
+we used a mid-latitude nighttime
+MIPAS\footnote{\url{http://www-atm.physics.ox.ac.uk/RFM/atm/} }
+profile, which provides the temperature, pressure, and abundances of
+various molecules in 1 km intervals from sea level to 120 km. The
+low-altitude ($z \lesssim 30$ km)
+temperature, pressure \citep{Kerber2010}, and humidity
+\citep{Chac2010} profiles were obtained from radiosonde date.
+
+
+The LBLRTM atmospheric modeling code comes with a molecular line list
+based on the HITRAN 2008 database \citep{Rothman2009}, with a few
+molecules individually updated. Since none of these updates were
+relevant for the wavelength range from $2300 - 2400$ nm, we in
+essence used the stock HITRAN 2008 database. However,
+in the process of modeling, we found several water and methane lines
+that were consistently under- or over-fit. For these cases, we
+manually adjusted the line strengths in the database. The line
+strengths were fit visually, not using a least-squares algorithm, and
+should not be considered rigourous new line strengths. Table \ref{tab:linelist}
+summarizes these changes.
+
+
+
+In some of the 2007 data, the first chip was not well illuminated
+by the flatfield lamp. This introduced an unphysical continuum shape
+in the data and made the resulting model fit very poor. For these
+cases, we ignored the first chip in further analysis. In addition,
+the fourth chip has several bad pixels on the left edge and a streak
+down the middle. None of the telluric model fits were very good on
+this chip, and so we have ignored it completely in our analysis.
+
+After the observed spectrum was fit, we found that the residuals still
+contained large spikes, even on the good detector chips. These spikes
+can come from a variety of sources. For the deepest lines, simple
+Poisson noise can create large residuals when dividing by the telluric
+model. In addition, a poorly fit continuum may cause the model to over- or under-estimate
+the abundance of a given molecule. This can be especially troublesome
+for water lines, for which only a few exist in the wavelength region we
+are investigating. If a strong water line is near the edge of the
+chip, where the continuum is usually least certain, the best-fit water
+abundance may be skewed and cause none of the water lines to be well fit. We do know
+that large residuals are \emph{not} coming from the spectrum of a
+low-mass star, due to the expected flux ratio between the primary and
+secondary, $F_s/F_p \sim10^{-2}$. Any residuals with amplitude greater than 
+$1\%$ of the continuum level come from uncorrected telluric lines,
+cosmic rays, or bad pixels. 
+
+In order to minimize these spikes, we performed a second fit to any
+residuals significantly above the continuum noise level. To make sure
+we were not fitting away any low-mass star lines, we only corrected
+spikes whose amplitude was greater than $5\%$ of the continuum level. In this
+second fit, we first attempted to fit a Gaussian to each spike. If the
+spike was well fit by a Gaussian, we divided the residuals by the fit.
+If not, we
+simply masked out the line core, so that it would not affect the
+cross-correlation in later analysis (see section \ref{sec:newmethod}). Figure
+\ref{correctionsteps} shows the steps involved in the telluric
+correction. Notice that the secondary correction removes the
+large residuals, while leaving the rest of the spectrum
+unaffected. 
+
+
+
+
+
+The telluric correction described above usually reduced any telluric
+lines to near the Poisson noise level in the spectrum, which is the best a
+fitting routine can do. To search for any systematic errors in the
+telluric correction, we added all spectra of each wavelength setting
+together to make a series of master telluric residual spectra. These
+master spectra had less random noise than any individual observation, and therefore we were
+immediately able to see whether some telluric lines are systematically
+under- or over-fit. For wavelength settings with at least ten spectra
+in our sample, we divided each individual spectrum by the master
+telluric residual spectrum. We did not make this final correction for
+wavelength settings with fewer than ten individual spectra in our sample.
+
+
+\section{Results}
+\label{sec:results}
+Each telluric residual spectrum was cross-correlated against a suite of model atmospheres
+generated by the Phoenix stellar atmosphere code \citep{Hauschildt1999}. All model spectra had solar metallicity. The effective
+temperatures ranged from $3000-7200$ K, in 100K intervals. We used
+several surface gravities based on the stellar temperature. For the
+model secondary stars with $3000 < T_{\rm eff} < 3600$, which would
+have to be very young (and large) to be detectable, we used a $\log (g) = 3.5$. For the secondaries with
+$3600 < T_{\rm eff} < 6500$, we used $\log (g) = 4.0$. Finally, we used
+$\log (g) = 4.5$ for $T_{\rm eff} > 6500$, which can be detected
+closer to the Main Sequence. We found that the surface gravity has only a very small
+effect on the cross-correlation, which is more sensitive to the line
+position than its precise width or depth. We
+compiled a list of all cross-correlations that show a single peak with
+at least $3\sigma$ significance. For a given telluric-corrected residual
+spectrum, several model atmospheres may generate a significant peak at
+the same velocity. This is because the model spectra of two stars
+differing by only a few hundred kelvin are not very different. To keep from
+counting peaks twice, we only counted the cross-correlation that
+resulted in the most significant peak at a given velocity. We then attempted to
+reject spurious peaks caused by the noise or incomplete telluric line
+removal in a multi-stage process.
+
+The first rejection stage was done by identifying peaks in the
+cross-correlation caused by telluric residuals. To do this, we
+cross-correlated a spectrum uncorrected for telluric absorption with
+the same suite of model atmospheres as we used for the corrected
+spectra (see above). We did these cross-correlations for one observation of each wavelength
+setting. The cross-correlation of uncorrected spectra with model-atmosphere spectra generated a series of cross-correlations with peaks
+arising exclusively from telluric lines. We visually compared all
+of the binary candidate signals with these telluric
+cross-correlations. If the dominant cross-correlation peak was at the
+same velocity and had a similar width as a peak in the telluric
+cross-correlation function corresponding to the same wavelength
+setting and secondary model temperature, we assumed that the peak was caused by incomplete
+telluric removal and rejected the candidate. There were several
+cross-correlations with peaks at the same location as a telluric peak,
+but with a different width. In these cases, we marked the candidate as
+probably coming from incomplete telluric correction, but did not
+reject the candidate.
+
+Next, we determined whether the signal to noise ratio and telluric line removal in a given observation would allow us to detect the candidate companion star.
+To do this, we added a model atmosphere with the
+same temperature as the candidate to the telluric-corrected spectrum at 17 different radial
+velocities ranging from -400 to 400 km s$^{-1}$. We do not expect to see any
+peaks from real companions with $|v| > 400$ km s$^{-1}$, the approximate
+radial velocity of a $1 M_{\odot}$ star orbiting a $10 M_{\odot}$ star
+such that the stellar surfaces are in contact. The flux ratio of the model atmosphere to the primary was obtained by
+interpolating pre-main-sequence evolutionary tracks from
+\cite{Landin2008} at the age of the system, as well at age$\pm
+\sigma_{age}$. The primary star ages for our sample are given in Table
+\ref{tab:sample}. We cross-correlated each of these semi-synthetic
+spectra against the model spectrum; if the largest
+peak was at the correct velocity, we counted the star as
+detected. If the star was not detected in the sensitivity
+analysis at least $50\%$ of the time, we rejected the candidate.
+The significance of the correct peak in the cross-correlation 
+function can vary greatly, depending on where the stellar spectrum falls in 
+relation to the telluric line residuals. Therefore, we cannot usually reject a peak
+based solely on its significance.
+
+We then visually inspected the remaining candidate cross-correlations,
+picking out those with a single dominant peak with $|v_r| < v_{\rm max}$
+where $v_{\rm max}$ is the maximum possible radial velocity for a star of
+temperature $T_{\rm sec}$ to be orbiting a hotter star of temperature
+$T_{\rm prim}$ with a semimajor axis $a$. Assuming a circular orbit,
+$v_{\rm max}$ is given by
+
+\begin{equation}
+v_{\rm max} = \sqrt{\frac{2G(M_{\rm prim} + M_{\rm sec})}{R_{\rm prim}}} \cdot \frac{T_{\rm sec}}{T_{\rm prim}}
+\label{eqn:vmax}
+\end{equation}
+
+where $M_{\rm prim}$ and $M_{\rm sec}$ are the masses of the primary and
+secondary stars, respectively, and $R_{\rm prim}$ is the radius of the
+primary star. The primary masses are given in \cite{Tetzlaff2010}, while
+the radii and primary star temperatures were estimated from spectral type relations given in
+\cite{CarrollOstlie}. Note that this is a conservative estimate in
+that it completely ignores the intrinsic temperature of the secondary
+star. An eccentric orbit could have a larger maximum velocity than
+that estimated by equation \ref{eqn:vmax}, if the orbit was oriented
+such that the the secondary star was moving towards earth at
+periastron. A star in an eccentric orbit cannot get so close to the
+primary that they touch, and its \emph{average} distance must still be
+far enough to allow for the observed secondary star temperature. These
+conditions lead to a maximum eccentricity, given by
+
+\begin{equation}
+e_{\rm max} = 1 - \frac{v_{\rm max}^2 (R_{\rm prim} + R_{\rm sec})}{G(M_{\rm prim} + M_{\rm sec})}
+\label{eqn:emax}
+\end{equation}
+
+where $R_{\rm prim} $ and $R_{\rm sec}$ are the radii of the primary
+and secondary stars, respectively, and $v_{\rm max}$ is the maximum
+circular velocity given by equation \ref{eqn:vmax}. In addition to the
+physical constraint on the eccentricity given by equation
+\ref{eqn:emax}, we do not expect very many eccentric orbits, since
+about $65\%$ of high mass binary systems have eccentricity $e < 0.2$ \citep{Sana2011}.
+
+The above analysis is summarized in Table \ref{tab:rejection}. There
+are two binary candidate systems that we have not been able to reject.
+ For both of these, we checked what other observations the candidate
+star had within the CO bandhead spectral region ($2300-2400$ nm). The analysis of each
+of these stars is done separately below.
+
+%\newpage
+
+
+\subsection{Hip 26713}
+The cross-correlation for this candidate is shown in figure
+\ref{fig:hip26713}. The strong peak at -220 km s$^{-1}$ has a
+significance just over $4\sigma$, and corresponds to a 5600 K star
+model. A sensitivity analysis (Table \ref{tab:rejection}, step 2) gives a median peak significance of $\sim 6\sigma$
+with a large ($\sim 2\sigma$) spread. Due to the large spread, we cannot reject
+the peak based on the observed significance.
+
+The candidate radial velocity amplitude of 220 km s$^{-1}$ is very near the conservative upper limit 
+given by equation \ref{eqn:vmax} of 256 km s$^{-1}$. If this candidate is a real binary companion, it
+must have been observed very near its radial velocity maximum and the orbital inclination must be very
+near edge-on. Assuming a circular orbit and equal probabilities
+of observing any given phase or inclination, the probability of this
+occuring is $\sim 0.01$.  It is therefore unlikely that this
+candidate is a true binary system. However, we cannot discount the
+possibility of an eccentric orbit leading to a higher value of $v_{\rm
+  max}$ than estimated by equation \ref{eqn:vmax}.
+  
+If Hip 26713 is a true binary system, evolutionary tracks by \cite
+{Landin2008} give a secondary star mass of $1.6 \pm 0.2 M_{\odot}$. 
+The mass of the primary star is $9.4 \pm 0.2 M_{\odot}$ \citep
+{Tetzlaff2010}, giving a mass-ratio of $q = 0.17 \pm 0.02$.
+
+
+
+
+\subsection{Hip 92855}
+\label{sec:hip92855}
+There were seven observations of Hip 92855 on different dates, all with the 2336 nm
+wavelength setting. The cross-correlations for four of the observation dates show
+a single strong peak when using a 6100K model star as template. Figure
+\ref{fig:hip92855} shows the cross-correlations of the
+telluric-corrected spectra with a 6100K model for all of the
+observations. Table \ref{tab:hip92855} summarizes the sensitivity and
+cross-correlation significance. The detection rate is the fraction of the 17
+radial velocities between -400 and 400 km s$^{-1}$ that were correctly detected in the sensitivity
+analysis (Table \ref{tab:rejection}, step 2). The variation in detection rate is due to the different
+signal-to-noise levels and telluric line corrections in the observations
+at different dates. The expected significance is the median significance of
+the radial velocities which were detected in the sensitivity analysis, in units of
+the standard deviation of the cross-correlation function. The observed
+significance and velocity are for the observed peaks. The velocities in Table \ref{tab:hip92855} are corrected for
+the barycentric motion and the known radial velocity of Hip 92855,
+while those in Figure \ref{fig:hip92855} are not.
+
+
+
+As Table \ref{tab:hip92855} shows, a 6100K star orbiting Hip 92855 is at
+the limit of detectability with the direct spectral detection
+method. With the exception of the observation on 09/16/2007, the
+cross-correlations for the dates with the highest detection rates have
+a single large peak. We consider this an excellent candidate for
+follow-up observations.
+
+If Hip 92855 is a true binary system, evolutionary tracks by
+\cite{Landin2008} give a secondary star mass of $1.2 \pm 0.2 M_{\odot}$. The mass of the
+primary star is $7.8 \pm 0.2 M_{\odot}$ \citep{Tetzlaff2010}, giving a mass
+ratio of $q = 0.15 \pm 0.04$. 
+
+
+
+
+\section{Completeness}
+\label{sec:completeness}
+We now estimate the completeness of the direct spectral detection
+method applied to this data set. For each telluric-corrected observation, we
+created a series of synthetic binary-star spectra by adding stellar models to
+the data at various flux ratios, temperatures, and radial
+velocities. We used evolutionary tracks from \cite{Landin2008} to
+find the luminosity of model companion stars with temperatures ranging from 3000K to
+7000K in steps of 500 K. To find the model flux ratio $F_s/F_p$, we
+used the best-fit age for each star quoted in
+Table \ref{tab:sample}, as well as the best-fit age$\pm
+\sigma_{age}$. Model secondary spectra generated with the Phoenix code
+\citep{Hauschildt1999} were added to the telluric-corrected
+observations at 17 different radial velocities ranging
+from -400 to +400 km s$^{-1}$. Changing the radial velocity of the model
+spectrum changes where the companion spectral lines fall with respect
+to the telluric lines. Finally, we cross-correlated each synthetic
+spectrum with its corresponding model secondary star spectrum, and examined the cross
+correlation function. 
+
+If the highest peak in the cross-correlation function was at the
+correct velocity, the companion was considered detected. We then
+tabulated how many times the companion star was detected in the 17
+radial velocity trials. Figure \ref{fig:completeness} shows the
+fraction of trials that detected the companion for all of the model
+radial velocities, as a function of primary (B-star) mass and the binary mass-ratio. The points
+correspond to individual spectra, with their sizes indicating the
+signal-to-noise ratio in the spectrum, and the contours are drawn by
+interpolating between the points. Companion stars with effective
+temperatures from $4600-5400$ K have large regions with a very high
+detection rate. Stars cooler than about 4600 K are too dim to detect
+without much higher signal-to-noise ratios than present in our dataset, and stars hotter than about
+5400 K do not have a strong CO bandhead and so the cross-correlation
+function is not as sensitive. 
+
+Figure \ref{fig:completeness} shows that the direct spectral detection
+method is able to find companion stars with a mass-ratio of $q\approx
+0.1-0.2$, for a range of effective temperatures. The regions with a 
+detection rate near 1 are completely sampled, and a companion star in 
+that region would be detected. For primary stars with $M < 10 M_{\odot}$, we are sensitive to almost all companions with $4600 < T_{\rm eff} < 5400$ K.
+
+
+
+
+
+\section{Multiplicity Fraction}
+\label{sec:multiplicity}
+
+We have not found any unambiguous low mass-ratio companions in our
+sample, though we do have one candidate that requires follow-up
+observations (Hip 92855). From the work described in section
+\ref{sec:completeness}, we define a range
+of mass-ratios for which the direct spectral detection method is
+sensitive for each primary (B-) star. We can then rule out any
+companions with mass-ratios in that range, for that primary star.
+
+In order to convert these star-by-star limits on the presence of a
+companion into upper limits on the multiplicity
+fraction of the parent population, we first count the number of stars
+that rule out companions in a particular range of mass-ratios. We then
+apply binomial statistics, where the probability P of finding k
+companions from n samples of a parent population with a true binary
+fraction p is given by
+
+\begin{equation}
+P(k|p,n) = \frac{n!}{k!(n-k)!}p^k(1-p)^{n-k}
+\label{eqn:binomial}
+\end{equation}
+
+For no detected binary companions (k=0), the corresponding likelihood
+function for the binary fraction is
+
+\begin{equation}
+P(p|k=0, n) = (n+1)\cdot  (1-p)^n
+\label{eqn:likelihood}
+\end{equation}
+
+A $90\%$ upper limit is given by
+
+\begin{equation}
+0.9 = \int_0^p (n+1)\cdot  (1-p')^n dp'
+\label{eqn:limitdef}
+\end{equation}
+
+with solution
+
+\begin{equation}
+p_{90} = 1 - 0.1^{\frac{1}{n+1}}
+\label{eqn:limit}
+\end{equation}
+
+A similar derivation gives $90\%$ upper limits for one detection (k=1).
+Figure \ref{fig:limits} shows the $90\%$ upper limits to the binary
+fraction as a function of mass-ratio. To find n in equation
+\ref{eqn:limit}, we counted the number of stars that ruled out a
+companion at the given mass-ratio. We only counted companions that
+were found in all 17 radial velocity trials (see section
+\ref{sec:completeness}), and were always found with at least $4\sigma$
+significance. We also included upper limits assuming that Hip 92855 is
+a true binary system. Figure \ref{fig:limits} also shows the lower
+multiplicity limit set by \cite{Evans2010} (blue dotted line) and an
+extrapolation of the flat distribution found by
+\cite{Sana2011} for $q \geq 0.2$. \cite{Evans2010} do not split their multiplicity by mass-ratio,
+and so the line shown in figure \ref{fig:limits} is an average value. While
+we include them for comparison with our results, neither of these studies are
+directly comparable to our sample. \cite{Sana2011} have mostly O stars in
+their sample, and are only sensitive to mass-ratios $q\approx
+0.2-1$. \cite{Evans2010} are sensitive to similar mass-ratios as our
+sample, but they sample late B-stars (B4-B9) while we sample early B
+stars (B0-B5). Our results are almost perfectly complementary to those of \cite{Evans2010}. It
+is encouraging that our upper limits for $0.1<q<0.2$, where our sample
+is most complete, lie in between the results of
+\cite{Sana2011} who measure the binary fraction of more massive
+primaries, and \cite{Evans2010} who measure the binary fraction of
+less massive primaries than we do.
+
+
+
+\section{Conclusion}
+\label{sec:conclusions}
+We have described a new technique for finding binary systems with a
+flux ratio of $F_p/F_s \approx 100$, where $F_p$ and $F_s$ are
+the fluxes from the primary and secondary star, respectively. In this
+technique, which we call the direct spectral detection technique, we
+use high signal-to-noise, high resolution spectra of a binary candidate.
+We remove the contamination from the Earth's atmosphere with the telluric 
+modeling code LBLRTM, and cross-correlate the residuals with a library of stellar 
+models for late type stars (F2-M5). A binary detection would appear as a strong 
+peak in the cross-correlation function.
+
+We investigate the completeness of the direct spectral detection method in section \ref{sec:completeness}. This method is sensitive to detecting a range of companion stars, set by the spectral type of the primary and the signal to noise ratio of the observation. Since the ages of the B-stars in our sample are shorter than the pre-main-sequence lifetimes of $\sim M_{\odot}$ stars, the range of detectable companions also depends on the age of the system. Our sample is sensitive to almost all companion stars with $4600 < T < 5400$, corresponding to binary mass-ratios of $0.1 \lesssim q \lesssim 0.2$.
+
+ We have applied this technique to a sample of 34 archived main sequence 
+early B-stars (B0-B5) with spectra taken with the CRIRES near-infrared
+spectrograph. We found no unambiguous companions in our sample, but identify two targets as candidate binary systems: Hip 92855 and Hip 26713. Hip 92855 is B2.5V type star, with a candidate companion star with effective temperature $T = 6100$ K and mass $1.2 \pm 0.2 M_{\odot}$. Such a companion star is very near the detection limit of the direct spectral detection technique and deserves further follow-up observations. Hip 26713 is a B1.5V type star, with a candidate companion star with $T = 5600$ K and $M = 1.6 \pm 0.2 M_{\odot}$. This star was only observed once in our sample, and so may be a series of incompletely removed telluric absorption lines masquerading as a companion star.
+
+We set upper limits on the binary fraction of early B stars as a function of binary mass-ratio (see Figure \ref{fig:limits}). As well as showing the upper limit for no detections in our sample, we also show the binary fraction upper limit assuming the Hip 92855 is a true binary system.  Our upper limits are strongest for mass-ratios $q \approx 0.1 - 0.15$, and are
+about $20\%$. We compare our limits to an extrapolation of the binary mass-ratio distribution for O- and early B-type primaries observed by \cite{Sana2011} for $q \geq 0.2$, as well as the lower limit \emph{average} binary fraction seen by \cite{Evans2011} for late B-stars (B4-B9). Our strongest upper limits ($0.1 \leq q \leq 0.15$) fall in between these two previous studies.
+
+Companion stars formed by circumstellar disk instability would have typical mass-ratios near $q = 0.1$ \citep{Kratter2006, Stamatellos2011}, where our upper limits are strongest. If there was a large population of low mass-ratio companions formed by disk fragmentation, we would expect to see a peak in the mass-ratio distribution near $q \approx 0.1$. Since our results agree very well with a simple extrapolation of the distribution seen by \cite{Sana2011}, it is unlikely that such a peak exists. We cannot rule out disk fragmentation entirely, but it does not appear to be a dominant formation mechanism for low mass-ratio binary systems.
+
+We would like to acknowledge Andreas Seifahrt, Rob Robinson, and Daniel Jaffe for their generous help with the telluric modeling 
+procedure and some of the statistical aspects of this work. This 
+research has made use of the 
+following online resources: the SIMBAD database and the VizieR
+catalogue access tool at CDS, Strasbourg, France, and the ESO Science 
+Archive Facility. Funding for this work was provided by the University
+of Texas College of Natural Sciences through a start-up grant to Sarah Dodson-Robinson.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                Tables                           %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\begin{small}
+\begin{longtable}[h]{|cccccc|}
+    %\tablecaption{Full star sample}
+    %\tablefirsthead{\hline Star & Spectral Type & Age (Myr) & Distance
+      %(pc) & Maximum Separation (AU) \\ \hline} 
+
+    %\tablehead{\multicolumn{5}{c}{{\tablename} \thetable{} -- Continued} \\ \hline Star &
+     % Spectral Type & Age (Myr) & Distance (pc) & Maximum Separation (AU) \\ \hline} 
+
+    %\tabletail{\hline}
+
+   % \tablelasttail{\hline}
+
+    \caption{Full star sample} \\
+        \hline
+       & & & & Maximum & Number of \\ Star & Spectral Type & Age (Myr) & Distance
+       (pc) & Separation (AU) & Observations \\ \hline
+        \endfirsthead
+
+        \multicolumn{6}{c}{{\tablename} \thetable{} -- Continued} \\
+        \hline
+         & & & & Maximum & Number of \\ Star & Spectral Type & Age (Myr) & Distance
+       (pc) & Separation (AU) & Observations \\ \hline
+        \endhead
+
+        \hline
+        \endfoot
+
+        \hline
+        \endlastfoot
+
+%    \begin{supertabular}{| c c c c c |}
+%        Hip 108975 & B3V (+B) 	&$ 50.1 \pm 10.9 $& 19.96 & 15.97 & 2 \\ 
+        Hip 23364 & B3V &$ 31.6 \pm 0.6 $& 31.65 & 25.32 & 1 \\ 
+        Hip 26713 & B1.5V &$ 7.2 \pm 2.5 $& 138.89 & 111.11 & 1 \\ 
+        Hip 27204 & B1IV/V & $12.6 \pm 4.6$ & 408.2 & 326.5 & 1 \\
+	Hip 30122 & B2.5V & $32 \pm 0.4$ & 111.1 & 88.9 & 4 \\
+	Hip 32292 & B2V & $8.2 \pm 0.1$ & 1111.1 & 888.9 & 1 \\
+	Hip 39866 & B3V & $25.1 \pm 2.6$ & 840.3 & 672.3 & 1 \\
+	Hip 48782 & B3V & $32.3 \pm 0.6$ & 370.4 & 296.3 & 1 \\
+        Hip 52370 & B3V &$ 17.2 \pm 1.3 $& 58.14 & 46.51 & 2 \\ 
+        Hip 52419 & B0Vp &$ 4 \pm 0.7 $& 250 & 200 & 2 \\ 
+	Hip 54327 & B2V & $11.7 \pm 6.2$ & 252.5 & 202.0 & 3 \\
+	Hip 55667 & B2IV-V & $22.5 \pm 2.6$ & 847.5 & 678.0 & 1 \\
+        Hip 60823 & B3V	&$ 25.3 \pm 6.3 $& 39.53 & 31.62 & 5 \\ 
+        Hip 62327 & B3V &$ 8.2 \pm 1.8 $& 121.95 & 97.56 & 4 \\
+        Hip 63945 & B5V &$ 27.3 \pm 11.4 $& 36.63 & 29.3 & 1 \\  
+   	Hip 61585 & B2IV-V & $18.3 \pm 3.2$ & 96.7 & 77.4 & 8 \\
+   	Hip 62327 & B3V & $8.2 \pm 1.8$ & 117.9 & 94.3 & 4 \\
+	Hip 63007 & B4Vne & $53.3 \pm 8.1$ & 117.6 & 94.1 & 2 \\
+	Hip 63945 & B5V & $27.3 \pm 11.4$ & 119.6 & 95.7 & 1 \\
+	Hip 67796 & B2V	& $15.4 \pm 0.4$ & 970.9 & 776.7 & 1 \\
+        Hip 68282 & B2IV-V &$ 13 \pm 2 $& 76.92 & 61.54 & 2\\ 
+        Hip 68862 & B2V &$ 9.1 \pm 3.8 $& 109.89 & 87.91 & 1 \\ 
+        Hip 71352 & B1Vn + A &$ 5.6 \pm 1 $& 178.57 & 142.86 & 2 \\ 
+        Hip 73129 & B4Vnpe &$ 27.1 \pm 6.1 $& 36.9 & 29.52 & 1 \\ 
+        Hip 74110 & B3V &$ 33.2 \pm 7.3 $& 30.12 & 24.1 & 1 \\ 
+        Hip 76126 & B3V &$ 15.9 \pm 1.3 $& 62.89 & 50.31 & 1 \\ 
+        Hip 78820 & B0.5V & $13.8 \pm 0.4$ & 123.9 & 99.1 & 1 \\
+        Hip 80582 & B4V &$ 50.1 \pm 14 $& 19.96 & 15.97 & 2 \\ 
+        Hip 80815 & B3V &$ 10.5 \pm 2.1 $& 95.24 & 76.19 & 4 \\ 
+        Hip 81266 & B0.2V &$ 5.7 \pm 1 $& 175.44 & 140.35 & 12 \\ 
+        Hip 82514 & B1.5Vp+ &$ 20 \pm 2 $& 50 & 40 & 1 \\ 
+        Hip 87314 & B2/B3Vnn &$ 23.2 \pm 2.9 $& 43.1 & 34.48 & 7 \\ 
+        Hip 92855 & B2.5V &$ 31.4 \pm 0.4 $& 31.85 & 25.48 & 7 \\ 
+        Hip 92989 & B3V	&$ 7.9 \pm 2.1 $& 126.58 & 101.27 & 1 \\ 
+%        Hip 94385 & B3V &$ 27.9 \pm 4.1 $& 35.84 & 28.67 & 2 \\
+        Hip 97611 & B5V &$ 45 \pm 10 $& 66.67 & 53.33 & 1        
+ %       \tablecomments{The maximum
+%separation column estimates the approximate separation of the binary
+%orbit we are sensitive to, assuming a seeing of 0.8''}
+%      \end{supertabular}
+
+        \label{tab:sample}
+\end{longtable}
+\end{small}
+\end{center}
+
+
+\begin{center}
+   \begin{longtable}[h]{|cccc|}
+      \caption{Summary of adjusted line strengths. The units of line
+        strength are cm$^{-1}$/(molecule $\times$ cm$^{-2}$)} \\
+        \hline
+        Wavelength (nm) & Molecule & Old Strength & New Strength \\ \hline \hline
+        \endfirsthead
+
+        \multicolumn{4}{c}{{\tablename} \thetable{} -- Continued} \\
+        \hline
+        Wavelength & Molecule & Old Strength & New Strength \\ \hline \hline
+        \endhead
+
+        \hline
+        \endfoot
+
+        \hline
+        \endlastfoot
+
+        2317.12   &   CH$_4$   &   5.445\e{-21}   &   5.034\e{-21} \\
+        2318.24   &   H$_2$O   &   1.400\e{-24}   &   2.256\e{-24} \\
+        2328.51   &   CH$_4$   &   2.521\e{-21}   &   2.371\e{-21} \\
+        2328.56   &   CH$_4$   &   1.270\e{-21}   &   1.358\e{-21} \\
+        2340.12   &   CH$_4$   &   3.085\e{-21}   &   2.963\e{-21} \\
+        2340.36   &   CH$_4$   &   3.343\e{-21}   &   3.211\e{-21} \\
+        2351.64   &   H$_2$O   &   1.670\e{-23}   &   1.393\e{-23} \\
+        2351.69   &   H$_2$O   &   1.085\e{-23}   &   7.985\e{-24} \\
+        2352.43   &   CH$_4$   &   3.144\e{-23}   &   4.031\e{-24} \\
+        2352.45   &   H$_2$O   &   4.639\e{-23}   &   4.939\e{-23} \\
+        2353.62   &   CH$_4$   &   2.708\e{-21}   &   2.654\e{-21} \\
+        2355.82   &   CH$_4$   &   5.101\e{-21}   &   4.949\e{-21} \\
+        2358.9     &   CH$_4$   &   5.160\e{-21}   &   4.710\e{-21} \\
+        2364.03   &   H$_2$O   &   1.408\e{-23}   &   1.217\e{-23} \\
+        2367.23   &   H$_2$O   &   2.078\e{-23}   &   2.182\e{-23} \\
+        2370.35   &   CH$_4$   &   4.028\e{-21}   &   3.625\e{-21} \\
+        2370.41   &   CH$_4$   &   2.437\e{-21}   &   2.021\e{-21} \\
+        2370.75   &   CH$_4$   &   1.466\e{-21}   &   9.138\e{-22} \\
+        2371.39   &   H$_2$O   &   3.905\e{-23}   &   3.171\e{-23} \\
+        236.62     &   H$_2$O   &   1.146\e{-23}   &   9.186\e{-24} \\
+        2376.63   &   H$_2$O   &   3.824\e{-24}   &   3.820\e{-24} \\
+        2378.2     &   H$_2$O   &   1.134\e{-22}   &   1.021\e{-22} \\
+        2379.67   &   H$_2$O   &   6.334\e{-24}   &   8.408\e{-24} \\
+        2385.98   &   H$_2$O   &   6.051\e{-23}   &   5.407\e{-23}
+        
+        
+    \label{tab:linelist}
+  \end{longtable}
+\end{center}
+  
+  
+  
+\begin{center}
+ \begin{small}
+   \begin{longtable}[h]{|ccp{6cm}|}
+      \caption{Summary of Cross-Correlation Function Peak Rejection Steps} \\
+        \hline
+        Step  & Description & Method \\ \hline
+        \endfirsthead
+
+        \multicolumn{3}{c}{{\tablename} \thetable{} -- Continued} \\
+        \hline
+        Step  & Description & Method \\ \hline
+        \endhead
+
+        \hline
+        \endfoot
+
+        \hline
+        \endlastfoot
+
+        1 & Telluric Residual Peak Identification & Compare cross-correlation function of telluric-corrected spectrum with that of an uncorrected spectrum. \\
+
+        \hline
+        2 & Sensitivity Analysis & Check that signal-to-noise ratio
+        is high enough to detect secondary candidate at a range of velocities \\
+
+        \hline
+        3 & Velocity Analysis & Check that a blackbody with the
+        candidate temperature can exist as close to the primary B-star as the velocity indicates (assumes circular orbit)
+        
+        
+    \label{tab:rejection}
+  \end{longtable}
+ \end{small}
+\end{center}
+
+
+
+\begin{center}
+\begin{scriptsize}
+\begin{longtable}{|ccccc|}
+\caption{Summary of Hip 92855 observations. Significance is in units of
+  the standard deviation of the cross-correlation function} \\
+\hline
+Date & Detection Rate & Expected Significance & Observed Significance
+& Velocity (km s$^{-1}$) \\ \hline
+\endfirsthead
+
+\multicolumn{4}{c}{{\tablename} \thetable{} -- Continued} \\
+\hline
+Date & Detection Rate & Expected Significance & Observed Significance
+& Velocity (km s$^{-1}$) \\ \hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+05/09/2007 & 0.35 & 3.3 $\sigma$ & 4.1 $\sigma$ & -74 \\
+06/09/2007 & 0.18 & 3.6 $\sigma$ & N/A & N/A \\
+07/25/2007 & 0.35 & 3.7 $\sigma$ & N/A & N/A \\
+08/02/2007 & 0.47 & 3.6 $\sigma$ & 3.5 $\sigma$ & -234 \\
+09/16/2007 & 0.82 & 4.2 $\sigma$ & N/A & N/A \\
+09/19/2008 & 0.71 & 3.4 $\sigma$ & 4.1 $\sigma$ & -126 \\
+10/10/2008 & 0.59 & 3.3 $\sigma$ & 4.0 $\sigma$ & 116 
+\label{tab:hip92855}
+\end{longtable}
+\end{scriptsize}
+\end{center}  
+  
+  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                Figures                          %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/DetectionMethod.eps}
+  \caption{This figure illustrates the approximate flux ratio limit to
+  the detection method outlined in section
+  \ref{sec:newmethod}. \emph{Top panel}: Residuals after telluric
+  correction (see section \ref{sec:reduction}) for chip 2 of Hip 108975 are in black, with an
+  atmosphere model for an $0.9 M_{\odot}$ star at 50.1 Myr below it in
+  red. The flux ratio at this age is $F_s/F_p = 0.0092$. \emph{Middle panel}: The scaled model
+  spectrum was added to the telluric residuals, and then the sum was
+  cross-correlated with the model. Despite the signal being
+  significantly below the noise level, the star was detected at a high
+significance. The y axis, in units of the standard deviation of the
+cross-correlation function, shows that the significance of the peak is over
+$4\sigma$. \emph{Bottom panel}: Same as the middle panel, but the
+model spectrum was added to the residuals with a 50 km s$^{-1}$ velocity
+offset.}
+  \label{method}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/FullTelluric.eps}
+  \caption{\emph{Top panel}: The telluric spectrum (absorption due to Earth's
+    atmosphere) in the wavelength range from $2290-2400$ nm. Most of the lines are
+    from CH$_4$, with a few H$_2$O lines appearing in the right
+    half. \emph{Bottom panel}: The model spectrum of a 5500 K star
+    with $\log (g) = 4.0$. Note that the line density of telluric
+    lines is comparable to or greater than that of the star model, and many of the
+    telluric lines are stronger than the stellar lines.}
+  \label{telluric}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/Correction_Steps.eps}
+  \caption{The telluric correction steps for chip three of CRIRES
+    wavelength setting $\lambda_{ref} = 2329.3$ nm. \emph{Top panel:}
+    Normalized spectrum (black), with the best-fit telluric model
+    (red). \emph{Middle panel:} Residuals after dividing the observed
+    spectrum by the telluric model. Note the large spikes near
+    $2328.5, 2331.0$, and $2335$ nm. \emph{Bottom panel:} Correction
+    after fitting the large residuals to Gaussians. }
+  \label{correctionsteps}
+\end{figure}
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/26713.eps}
+  \caption{Cross-correlation for Hip 26713, using a 5600 K star model spectrum as template. The y-axis is in units of
+    the standard deviation of the cross-correlation function. The peak is very near the maximum velocity of $|v_{\rm max}| = 256$ km s$^{-1}$, assuming a circular orbit (see equation \ref{eqn:vmax}). the likelihood of observing the system nearly edge on and at a quadrature point, so that $|v| \sim |v_{\rm max}|$, is $p \approx 0.01$. However, it is possible that the system has an eccentric orbit, effectively increasing $|v_{\rm max}|$.}
+  \label{fig:hip26713}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/92855_portrait.eps}
+  \caption{Cross-correlations for Hip 92855, for all dates observed. A 6100 K star model spectrum is used as the template for each cross-correlation. The y-axis is in units of
+    the standard deviation of the cross-correlation function. The
+    telluric-corrected spectra for each date were cross-correlated
+    with a 6100 K star model. A single strong peak is seen in the
+    cross-correlations from 05/09/2007, 08/02/2007, 09/19/2008 and 10/10/2008. }
+  \label{fig:hip92855}
+\end{figure}
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=5.5in]{Figures/Completeness.eps}
+  \caption{Completeness diagram for the full sample of main-sequence B
+  stars, split up by the effective temperature of the secondary
+  star.. The points correspond to the individual stars in the sample,
+  and their sizes reflect the signal-to-noise ratio in the
+  spectrum. Note that the signal-to-noise is calculated after the
+  telluric line removal, and counts any telluric residuals as
+  noise. The figures are also color-coded by the fraction of trials
+  that detected the companion (see section
+  \ref{sec:completeness}). Contours are drawn to guide the eye. The red 
+  areas in each plot indicate the regions for which our sample is complete.}
+  \label{fig:completeness}
+\end{figure}
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/BinaryFraction.eps}
+  \caption{Estimates of the binary fraction of B0-B5 stars,
+    as a function of binary mass-ratio. This work found no unambiguous companions,
+    and so we give $90\%$ upper limits (solid black line). $90\%$
+    upper limits are also given assuming that Hip 92855 is a real
+    binary system (dotted black line). The upper limits are only different within the
+    $1\sigma$ error bars on the mass-ratio for Hip 92855. The flat 
+    distribution found by \cite{Sana2011} is shown as the solid red line,
+    and is extrapolated to lower mass-ratios (dashed red line) The average binary 
+    fraction found by \cite{Evans2011} is also shown (dash-dot blue line). The
+    \cite{Evans2011} value is a \emph{lower} limit and an average over all mass-ratios from $0.1 < q < 0.3$, but they estimate
+    that their sample is very complete, and so the true multiplicity fraction is quite close to their value.}
+  \label{fig:limits}
+\end{figure}
+
+
+\chapter{Planetary Mass Determination}
+\section{Scientific Justification}
+With almost 600 confirmed extrasolar planets \citep[from
+exoplanets.org:][]{exoplanet}, the time for characterization of these
+planets is here. A first step towards characterization is a determination of
+the planet mass. Most of the planets so far discovered were
+found using the radial velocity technique, which measures the periodic
+Doppler shift of the parent star. The radial velocity semi-amplitude
+(K) of a planet of mass $M_p$ orbiting a star of mass $M_s$ with a
+semi-major axis $a$, eccentricity $e$, and orbital inclination $i$ is
+
+\begin{equation}
+K = \sqrt{\frac{G}{1-e^2}} \frac{M_p \sin{i}}{\sqrt{M_sa}}
+\label{eqn:rv}
+\end{equation}
+
+The radial velocity semi-amplitude, eccentricity, and semi-major axis
+can all be determined by monitoring the radial velocity of the star,
+and the stellar mass can be determined from its spectrum
+so equation \ref{eqn:rv} can be solved for $M_p \sin{i}$. 
+
+Unfortunately, the inclination of the orbit cannot be determined
+without another complementary method. This means that planet masses from
+radial-velocity surveys are only \emph{minimum} masses. The observed mass
+distribution is therefore different from the true mass
+distribution, and difficult to compare to formation theories
+\citep[see e.g.][]{Ida2005, Mordasini2009}. Various statistical methods to recover the true
+planetary mass distribution have been proposed \citep[see][and
+references therein]{Lopez2012}, but a much more robust method would be
+to observationally measure the masses of the known planets and build
+up an observed true mass distribution. 
+
+The astrometric method, which directly observes the parent star's orbit
+in the plane of the sky, is complementary to radial velocity
+measurements. Combining the two methods determines the inclination and
+true planet mass, assuming the stellar mass is known. Unfortunately,
+the astrometric method is very difficult due to the very small reflex
+motions of the parent star. The maximum amplitude of the astrometric
+motion of a Jupiter-mass planet orbiting a
+sun-like star at 1 AU and at a distance from Earth of 1 pc is about 20
+$\mu$as,  roughly an order of magnitude below the
+precision of the Hubble Space Telescope Fine Guidance Sensors
+\citep{Benedict2006}. This value is for a circular orbit that is
+face-on ($i = 0$); higher inclinations result in even smaller
+astrometric amplitudes. Because of the small stellar reflex motions,
+the astrometric method is not a practical way to measure the true
+masses of most planets. 
+
+The true mass and inclination of a planet could also be determined if the
+radial velocity amplitude of the planet was known as well as that of its parent
+star. This would effectively turn a planetary system into a
+double-lined spectroscopic binary system. There are two ways that the
+radial velocity of an orbiting planet could be measured: light
+reflected from the parent star or the thermal emission from the planet. Several groups have
+attempted to detect the reflected light from orbiting planets, but at
+the time of this writing none have been successful \citep{Collier2002,
+  Rodler2008, Rodler2010, Langford2011}. 
+
+While searches for reflected light are best done in the optical, the
+thermal emission from a $\sim 1000$K planet will peak in the
+near-infrared. Figure \ref{fig:fluxcomp} compares the blackbody flux
+from several planets. The
+reflection component is the leftmost peak, and is just a scaled
+version of the stellar spectrum, while the thermal emission component peaks
+in the near infrared to infrared. The details of the thermal emission spectrum, such as spectral lines and deviations from a Blackbody function (not shown in Figure \ref{fig:fluxcomp}) depend on the temperature, pressure, and composition of the planet's atmosphere.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/FluxComparison.eps}
+  \caption{Flux comparison for various planets, including both
+    reflection and emission. The emission for the Hot Jupiter HD
+    209458b and the Hot Neptune GJ 436b peak in the near-infrared.}
+  \label{fig:fluxcomp}
+\end{figure}
+
+The thermal emission from a small group of planets has been detected,
+including HD209458b \citep[e.g.][]{Knutson2007, Swain2008,
+  Cubillos2010}, HD189733b \citep[e.g.][]{Grillmair2007, Knutson2007_2,
+  Char2008, Agol2010}, Wasp-3b \citep{Zhao2012}, and even the
+Super-Earth 55 Cnc b \citep{Demory2012}. These detections were mostly made
+using either Spitzer photometry or low-resolution spectroscopy, and
+they are all transiting planets. Very recently, \cite{Brogi2012} and 
+\cite{Rodler2012} used VLT/CRIRES to detect the thermal emission from 
+Tau Boo b in high resolution, the first detection of the thermal emission from a non-transiting planet. They use the detection to determine the true mass of the planet to within $4.7\%$ \citep{Brogi2012} and $12.5\%$ \citep{Rodler2012}. 
+
+There are several challenges to detecting the thermal emission, especially in high resolution. The very low flux ratio between the planet and the star ($F_p/F_s \sim 10^{-4}$ in the K-band, from about $2.0 - 2.4 \mu m$) requires a very sensitive instrument and high signal-to-noise (S/N), which is very challenging on current near-infrared spectrographs. Second, the near-infrared is highly contaminated by absorption from the Earth's atmosphere (telluric absorption). In order to detect a planetary spectrum, the telluric lines must be removed very well. Finally, the stellar spectrum must be removed to detect the planetary spectrum. This is extremely challenging for non-transiting planets, for which the planet is never blocked by the star. 
+
+In this chapter, we investigate a technique to detect the thermal
+emission from a Hot Jupiter\footnote{Hot Jupiters are planets whose
+  mass (or minimum mass) is near that of Jupiter, but whose semi-major
+  axes are of order 0.1 AU or less}. We model observations of a known,
+non-transiting hot jupiter with the near-infrared spectrograph IGRINS,
+which will see first light on the Harlan J Smith telescope at McDonald
+Observatory in 2013. In section \ref{sec:method}, we briefly describe the IGRINS instrument, and describe how we created synthetic observations and how we detected the planetary signature within these observations. We describe the results of several experiments testing the sensitivity of our method in section \ref{sec:results2}, and give an error budget analysis in section \ref{sec:error}. Finally, we conclude in section \ref{sec:summary}. 
+
+
+\section{Instrument and Methodology}
+\label{sec:method}
+The IGRINS instrument is explained in detail in \cite{IGRINS}. IGRINS
+is an immersion grating echelle spectrograph, and will
+be capable of observing the entire H and K spectral windows at once,
+with a resolution of $R=\lambda / \Delta \lambda = 40000$. IGRINS is
+scheduled to see first light on the Harlan J Smith telescope at McDonald
+Observatory in 2013.
+
+We make several assumptions and simplifications in this work. We
+ignore any instrumental effects that may introduce non-gaussian noise.
+We also ignore any light reflected from the star, and
+consider only the thermal emission. The reflected light
+contribution to the total planet luminosity is less than $10\%$ in the
+H band, and less in the K band, assuming a geometric albedo of 0.1. 
+Many measurements of the
+geometric albedo in the visible have set upper limits of $A_G < 0.3$
+\citep[see e.g.][and references therein]{Madhusudhan2012} While it is not expected to have a large effect on
+the total planet luminosity, the reflection contribution may be
+important enough to include in a real observing program. We also assume
+there is only one planet orbiting the star, and that
+the star is a not in a multiple system. This spectroscopic detection
+method should work for multiple planet systems in principle, but is
+outside the scope of this work.
+
+Hot Jupiters are expected to be tidally locked with their parent stars
+\citep{Fabrycky2010}, meaning there is a permanent day and night side. The extent
+of heat redistribution from the dayside to the nightside is uncertain, 
+but appears to vary throughout
+the Hot Jupiter planetary class. \cite{Knutson2007_2} find that
+HD189733 is consistent with a high degree of heat redistribution
+between its day and night side. Conversely, \cite{Harrington2006} find
+that $\nu$ And b is consistent with no heat redistribution. We assume 
+complete heat redistribution, so that there is
+no variation in brightness as the planet orbits its star.
+
+There are three main steps in our simulated observing program: generating
+a series of synthetic observations, removing the signature of Earth's
+atmosphere as well as the parent star's spectrum, and searching for
+the planet signal in the residuals. Each of these steps is detailed
+below.
+
+\subsection{Synthetic Observation Generation}
+An observed spectrum of a star and planet system can be divided into
+three parts: the star, the planet, and the Earth's atmosphere
+(telluric contamination). We simulate the stellar and planetary spectra using a code based
+on the Phoenix stellar atmosphere code, with some modifications to
+account for the intense stellar irradiation encountered by a hot
+jupiter (Travis Barman 2011, priv. comm.) Two tests cases were used:
+HD209458 and HD189733. Both of these systems are well studied,
+with detections of the planet atmosphere in both transmission and 
+broadband emission. Note that while both of these systems are transiting in reality, we are free to simulate them as if they were non-transiting planetary systems. 
+
+The absorption due to earth's atmosphere was modeled using the LBLRTM
+code \citep{Clough2005}. This code takes the pressure, temperature,
+and abundance of several molecular species at a series of heights in
+the atmosphere, and outputs a transmission spectrum. The code also
+requires a line list containing the molecular
+line strengths and positions, which along with the molecular abundance
+determine the amount of absorption at a given wavelength. For this
+project, we used the HITRAN database \citep{Rothman2009} for the line
+list.
+
+We follow a several step procedure to generate a synthetic observation, which is outline below. First, the star and
+planet model spectra were added at the appropriate flux ratio and
+Doppler shifts. The flux ratio is determined mostly by the model
+spectra themselves. However, the planet spectra must be multiplied by the
+additional factor of the $(R_p/R_s)^2$, where $R_p$ and $R_s$ are the
+planetary and stellar radii, respectively. The Doppler shift at which the
+models are added is determined by giving values for the semimajor
+axis, eccentricity, and inclination of the planet's orbit as well as
+the planet and star masses. Synthetic observations were made at
+several phases in the planet's orbit, corresponding to different
+radial velocities. 
+
+After adding the star and planet spectra together, the sum
+was multiplied by the absorption from passing through Earth's
+atmosphere. The relative humidity, air temperature, and telescope pointing angle were chosen randomly for each observation. Next, the instrumental
+resolution and finite pixel size were accounted for. The resolution of
+the spectra were reduced to $R=\lambda / \Delta \lambda = 40000$, the
+predicted resolution of IGRINS, by convolving the spectrum with a
+gaussian profile. The finite detector pixel size effectively rebins the wavelength
+spacing on the observed spectrum. The spacing was
+determined using the predicted spectral format of IGRINS
+\citep[Figures 2 and 3 of ][]{IGRINS}. Finally, gaussian random noise
+was added to each pixel. The average signal-to-noise ratio (S/N) over
+the entire spectrum was varied throughout the experiments.
+
+
+\subsection{Telluric Line Removal}
+\label{sec:tellcorr}
+Once a synthetic observation is made, we must first remove the
+telluric contamination. We model a method similar to that described by
+\cite{Mandell2011}. We simulated observations of the 'science target'
+as described above, but also simulated the observation of a 'standard
+star.' The standard star was modeled as a 20000 K blackbody, to
+simulate a B-type star. The generation of this synthetic observation
+was identical to that used for the science star, except we used a
+telluric model with a different telescope pointing angle to model the
+telluric contamination and we did not add the planet model spectrum. 
+The different telescope pointing angle causes the telluric lines to be 
+either deeper or shallower than the corresponding lines in the science star spectrum. 
+
+We then simulated an independent model fit to the science and standard
+stars. In order to simulate systematic errors in the model fit, we 
+divided both the science star and the standard star by telluric models 
+that had $\pm 1\%$ humidity from the 'actual' humidity used to make the
+observation. This process left large telluric residuals, but the residuals were
+quite similar in both the science star and the standard star
+observations. Thus, division of the science star residuals by the
+standard star residuals adequately removes the telluric
+contamination. Figure \ref{fig:tellcorr} illustrates the telluric
+removal process for a region with particularly severe telluric
+contamination. The top panel shows the original science star
+spectrum. The middle panel of figure \ref{fig:tellcorr} shows the
+residuals after the simulated model fit, for both the science and
+standard stars. The systematic errors are
+obvious and appear like emission lines. The bottom panel
+shows the result of dividing the science star residuals by the
+standard star residuals. The telluric contamination has largely
+been removed.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/TelluricCorrection.eps}
+  \caption{Telluric Correction process. \emph{Top Panel}: Original
+    science star spectrum.  \emph{Middle Panel}: Telluric residuals
+    after the model fit. The science star residuals are in black, and
+    the standard star residuals are in red. \emph{Bottom Panel}:
+    Result after division of the science star residuals by the
+    standard star residuals.}
+  \label{fig:tellcorr}
+\end{figure}
+
+\subsection{Stellar Spectrum Removal}
+\label{sec:stellar}
+With the telluric contamination removed, the simulated observations
+consist of just the star, the planet, and noise. In order to remove
+the stellar spectrum, we must use observations at various times
+throughout the extrasolar planet's and the Earth's orbit. To build up a stellar spectrum with minimal contamination from either telluric
+lines or planet lines, we simulate observations of the the star at
+various phases in its orbit as well as the Earth's orbit. After
+correcting for the Doppler shift from both the Earth's motion and the star's
+reflex motion, both of which are assumed known, we co-add the spectra from several observations. This
+process will smear out any planet lines and any residual telluric 
+lines, as well as reduce the random noise in the spectrum by a 
+factor of $\sqrt{N}$. The result 
+is a very high S/N stellar template spectrum. We then subtract this 
+template from each observation. 
+
+This method of generating a stellar spectrum works best with a large
+number of observations. The planetary lines are reduced in intensity,
+but are still present at several radial velocities in the stellar
+spectrum template for any finite number of observations. Thus,
+subtracting the stellar spectrum will also subtract some of the signal
+we are interested in. For observations of the system at N distinct orbital
+phases, this stellar subtraction algorithm will subtract 1/N of the
+planet signal.
+
+
+\subsection{Recovery of Planet Radial Velocity}
+\label{sec:rv_recovery}
+After removing the telluric and stellar lines, each observation has
+been reduced to a very noisy planet spectrum. Unfortunately, the low
+planet to star flux ratio of $F_p/F_s \sim 10^{-4}$ means the
+random noise generally has an amplitude greater than the variation in
+the planet spectrum itself (i.e. the S/N $<1$). While this prevents us from being able to
+recover a true spectrum of the planet, we can still detect the planet
+signature by cross-correlating the residuals against the planet model
+spectrum. The cross-correlation will show a peak at the velocity
+corresponding to the radial velocity of the planet. This is precisely 
+what we need to be able to determine the true mass and inclination of 
+the planet. 
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/crosscorrelation1.eps}
+  \caption{\emph{Top Panel}: Residuals after telluric and stellar line
+  removal (black), and a model planet spectrum (red). Only one echelle
+order is shown for clarity. The large spikes are telluric and/or
+stellar lines that were not completely removed. \emph{Bottom Panel}:
+The cross-correlation function resulting from cross-correlating the
+planet model against a residual spectrum 
+over all echelle orders. A strong peak is visible near 35 km/s.}
+  \label{fig:correx1}
+\end{figure}
+
+Figure \ref{fig:correx1} shows an example of this process, for the
+HD189733 planetary system. The top, black curve on the top panel shows
+the residuals for a single order of one simulated observation of HD
+189733. The large spikes with amplitudes roughly twice that of the
+noise are telluric and/or stellar lines that were not completely
+removed. The red curve just below this shows a model for the HD189733b
+planet spectrum. The bottom panel of figure \ref{fig:correx1} shows the
+cross-correlation function resulting from cross-correlating the model
+spectrum against the residuals for all 24 echelle orders in the
+simulated observations. A strong peak is visible near 35 km/s,
+signifying a detection of the planet atmosphere at this radial
+velocity. 
+
+Unfortunately, not all cross-correlation functions have such a strong 
+single peak. Many times a series of stellar or telluric residuals will 
+mimic a detection, producing a cross-correlation function with several large peaks. We can use our knowledge of the planet's orbit to decide
+if a given peak is real or not. The first thing we will know is
+whether the planet's velocity should be positive or negative, because
+it should always have the opposite sign from its parent
+star. Note that this assumes a single planet, or at least that the 
+planet we are attempting to detect is much more massive than any other
+planets.
+
+Additionally, a maximum velocity amplitude may be able to be
+assigned. The planet's velocity amplitude $K_p$ is related to the
+stellar velocity amplitude ($K_s$), and the masses of the star and
+planet through
+
+\begin{equation}
+K_p = K_s \frac{M_s}{M_p}
+\label{eqn:massdet}
+\end{equation}
+The maximum velocity amplitude comes from the minimum planet mass,
+which is known from the radial velocity survey that originally
+detected the planet. 
+
+Finally, all observed planetary phases can be put together in order to attempt
+to find the radial velocity signature. Figure \ref{fig:allcorr}
+illustrates this concept. The cross-correlations from 25 observations
+are shown in color-code, as a function of orbital phase. Even though
+there are several phases with no detection (phases 0.6-0.7 and 0.9-1),
+a sine curve is clearly visible. This is the signature of a planet
+detection. 
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/allcorr.eps}
+  \caption{A summary of all of the cross-correlation functions over
+    25 orbital phases. The figure is color-scaled by the significance
+    of a given cross-correlation peak. The sine curve signature of a
+    planet detection is clearly visible, even though there are several
+    phases at which a significant detection is not made.}
+  \label{fig:allcorr}
+\end{figure}
+
+We summarize the detection process below.
+\begin{enumerate}
+\item Fit telluric model to science star and a standard (rapidly rotating A or B) star
+\item Divide telluric fit residuals of science star by those of standard star
+\item Co-add all telluric-corrected observations after shifting to the stellar rest frame, to make stellar spectrum template
+\item Subtract stellar spectrum template from each telluric-corrected observation
+\item Cross-correlate each telluric and stellar-corrected observation with planet model.
+\item Combine all cross correlations, look for planet signature (see Figure \ref{fig:allcorr}).
+\end{enumerate}
+
+
+\section{Results}
+\label{sec:results2}
+We simulated a series of observations of the Hot Jupiter systems
+HD189733 and HD209458. We
+present below the results of a series of experiments testing the
+sensitivity of our technique to the average S/N in the observed
+spectrum and the number of observations. We also examine the
+model dependence of our method. 
+
+In all cases, we attempted to detect the radial velocity signature of
+the planet using the velocity of the highest cross-correlation peak at
+each orbital phase. For each cross-correlation, we found the highest
+peak within the possible range of planetary radial velocities (see
+section \ref{sec:rv_recovery}). After removing outliers, we attempted to fit a sine curve
+to the planetary radial velocities, giving the planetary radial velocity amplitude. We considered
+the planet as detected if the mass derived from this velocity
+amplitude and equation \ref{eqn:massdet} agreed with the true mass
+(which is a parameter we used as input in creating the synthetic
+observations) within $1\sigma$ errors. 
+
+To test the dependence on S/N, we generated a series of synthetic observations at 25 orbital phases
+for average signal-to-noise ratios ranging from 100  - 5000. We found
+that each system has a minimum S/N needed to be able to detect the
+planet. For the HD189733 system, each phase needed to have a S/N $>
+500$; for the HD209458 system, each phase must have a S/N $>
+1000$. HD189733 is a cooler star than HD209458 while the planets are
+roughly the same temperature. This makes the planet to star flux ratio
+larger in the former system, and is why the critical S/N is
+lower. We find little advantage to taking observations with S/N higher
+than the critical value, because errors in the telluric or stellar
+line removal quickly begin dominating the residual spectra. Note that these high S/N values
+do not necessarily need to be achieved in a single exposure, and that several exposures
+at the same or very similar orbital phase can be co-added. 
+
+We next determined the dependence of our method on the number of
+distinct orbital phases observed. This will likely be limited by the amount of
+observing time given for such a project. Since our stellar spectrum removal method also
+removes some of the planet spectrum (see section \ref{sec:stellar}), a
+large number of observations is needed in order to leave the planet
+signal intact. Fewer phases than this will reduce the planetary spectrum 
+enough that the cross-correlation peak corresponding
+to the true planet signal will be reduced to below the noise level. 
+We found a critical value of 7 phases to detect either planetary system, but since we are using simulated
+data this may be an underestimate. A real observing campaign may require ten or more distinct 
+orbital phases to be detectable. In fact, it is desirable to observe the planet as often as possible;
+doing so improves both the stellar spectrum removal and the final mass determination. While we simulate observations spread about evenly throughout the planet's orbit, focusing on phases near quadrature will improve the mass determination.
+
+Finally, we attempted to gauge how model-dependent our method is to
+the planetary model. Planet atmosphere models are very unconstrained,
+since very few planetary spectra have been taken. In a real observing
+program, the residuals would have to be cross-correlated against a
+grid of reasonable model atmospheres with different temperature and
+pressure profiles, with and without thermal inversions, and with
+different compositions. However, the model that is
+closest to the true planet atmosphere may still be somewhat
+different. 
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\columnwidth]{Figures/PlanetModelComparison.eps}
+  \caption{A comparison of the HD189733 planet model with the HD209458
+  planet model. The gap in the middle is is in between the H and K
+  spectral windows, where water absorption in the Earth's atmosphere
+  blocks most of the incoming light. HD209458b has an thermal inversion
+  in its atmosphere, which generates the emission lines near 1950
+  nm. HD189733 is somewhat cooler and has more water, giving its
+  spectrum stronger spectral lines.}
+  \label{fig:modelcomp}
+\end{figure}
+
+In order to determine the effect of using an incorrect
+planetary model atmosphere, we made a series of synthetic observations
+of the HD189733 system. We removed the telluric and stellar lines as
+outlined in sections \ref{sec:tellcorr} and
+\ref{sec:stellar}. However, instead of cross-correlating the residuals
+with a model spectrum for HD189733b, we cross-correlated with the
+HD209458b model. Figure \ref{fig:modelcomp} compares the two planet
+models, which are qualitatively very different. Physically, HD189733b is about three times as dense, 
+has an equilibrium temperature about 250 K cooler \citep{Torres2008}, and has a 
+much higher abundance of CH$_4$ \citep{Moses2011} when compared to HD209458b. Additionally,
+HD209458b is thought to have a thermal inversion layer in its atmosphere, likely caused by UV absorption by TiO or VO
+\citep{Knutson2008}, while HD189733b has no such layer \citep{Char2008}. This thermal inversion layer is responsible
+for the emission lines seen in the HD209458b model spectrum near 1900-2000 nm. Using the wrong planetary model, the
+critical S/N needed to detect the the planet increases from 500 to 900. However, this near-doubling in the 
+required S/N is likely an overestimate, since the two planets are quite different. In a real observing campaign,
+the residual spectra would be cross-correlated against a grid of model spectra with different pressure-temperature
+profiles and molecular abundances. One model spectrum, or more likely several model spectra, would be closer to the correct 
+planetary spectrum than simulated in this experiment.
+
+
+\section{Error Analysis}
+\label{sec:error}
+We now determine the precision with which the mass of the planet can be determined from the measured planetary radial velocities. We assume that the S/N is high enough, that enough spectra were taken, and that the model planet spectrum is close enough to correct to detect the planet spectrum. With the exception of the number of observed phases, these do not significantly effect the precision with which the planet mass is determined. The cross-correlation peak corresponding to the planetary spectrum detection has a width of $\approx 10$ km s$^{-1}$, set mostly by the IGRINS resolution of $R\approx 40000$. With observations at N distinct phases of the planet's orbit, this translates to an uncertainty in the semi-amplitude of the planet's radial velocity of $K_p \approx 10/\sqrt{N}$. 
+
+Table \ref{tab:error} shows a sample error analysis for planetary systems like HD 189733 and HD 209458, assuming a $45^{\circ}$ inclination. We also assume that observations were taken at 20 distinct phases, leading to an uncertainty in the planet's radial velocity amplitude of $K_p = 2.24$ km s$^{-1}$. The actual uncertainties in the stellar mass and stellar radial velocity amplitude for the two systems were used, and are typical of most RV-detected planetary systems. Both the uncertainty in Jupiter masses and the percent uncertainty are given in Table \ref{tab:error}. The uncertainty in the planet radial radial velocities is comparable to the other uncertainties in both cases, and no single source of uncertainty dominates the error budget.
+
+
+\begin{center}
+\begin{longtable}{|ccc|}
+
+\caption{Contributions to the planet mass uncertainty, assuming observations at 20 orbital phases and $45^{\circ}$ inclination} \\
+\hline
+ & HD 189733 b & HD 209458 b \\ \hline
+\endfirsthead
+
+\multicolumn{3}{c}{{\tablename} \thetable{} -- Continued} \\
+\hline
+ & HD 189733 b & HD 209458 b \\ \hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Stellar Mass & 0.090 M$_{\rm Jup}$ / 5.6\% & 0.021 M$_{\rm Jup}$ / 2.2\% \\
+Stellar RV Amplitude & 0.047 M$_{\rm Jup}$ / 2.9\% & 0.008 M$_{\rm Jup}$ / 0.8\% \\
+Planet RV Amplitude & 0.036 M$_{\rm Jup}$ / 2.2\% & 0.022 M$_{\rm Jup}$ /2.3\% \\
+Total Uncertainty & 0.108 M$_{\rm Jup}$ / 6.7\% & 0.031 M$_{\rm Jup}$ / 3.2\%
+ 
+\label{tab:error}
+\end{longtable}
+\end{center}
+
+\section{Summary and Conclusions}
+\label{sec:summary}
+We have described a technique for detecting the thermal emission from a 
+non-transiting Hot Jupiter using high resolution, high signal-to-noise spectra.
+We have shown that the radial velocity of the planet can be measured throughout
+its orbit, allowing a determination of the true planet mass and inclination. We
+have applied this technique to simulated observations with the IGRINS near-
+infrared instrument, which is sensitive to the entire H and K bands and will
+begin operating on the Harlan J Smith Telescope at McDonald Observatory in 
+2013.
+
+We simulate observations of the well-studied Hot Jupiters HD189733b and HD209458b. We make synthetic observations at various phases of the planet's orbit, and at several different barycentric radial velocities to simulate observations taken at different times of the (Earth's) year. We then remove the telluric absorption and parent star spectra, and search for the planet spectra as outlined at the end of section \ref{sec:rv_recovery}. We tested several aspects of the above process to determine how reliably the thermal emission from the planet can be detected. The results are summarized below.
+\begin{itemize}
+\item A system like HD189733 requires a minimum signal-to-noise ratio of $\sim 500$, assuming the planet model template is very close to the true planetary emission spectrum.
+\item HD209458, being slightly dimmer, requires a signal-to-noise of $\sim 1000$.
+\item A minimum of about 7-10 distinct orbital phases are necessary to adequately remove the stellar spectrum without removing too much of the planet spectrum. This critical value may be an underestimate.
+\item Since the cross correlation function is more sensitive to line position than depth, this method works even when the planet model spectrum is significantly different from the true planet spectrum. However, model spectra that more closely resemble the true planet spectrum have lower S/N requirements.
+\end{itemize}
+
+Our simulated observations are similar to the recent detection of Tau Boo b by \cite{Rodler2012} and \cite{Brogi2012}, both using CRIRES on the VLT. Tau Boo, an F6 star, has relatively few lines and and so the stellar spectrum removal is significantly simpler than in a later-type star. In fact, an F6 star has no strong lines in the spectral window they used, and so they do no stellar spectrum removal. We have demonstrated a method to remove the stellar spectrum of a G or K type star well enough to be able to detect the orbiting planet. We also simulated observations using IGRINS, an instrument that is more sensitive and will be able to observe a much larger spectral range than CRIRES. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% BIBLIOGRAPHY
+% \begin{thebibliography}{}        %% Start your bibliography here; you can
+% \bibitem{}Abraham, R.~G., Merrifield, M.~R., Ellis, R.~S., Tanvir, N.~R., \& Brinchmann, J.\ 1999, 
+%   \mnras, 308, 569 
+%                    %%   also use the \bibliography command
+% \end{thebibliography}{}           %% to generate your bibliography.
+% ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography} 
+\bibliographystyle{apj}
+\bibliography{references}
+
+%\begin{thesisauthorvita}            %% Write your vita here; it can be
+                                                     %%   anything in LaTeX2e par-mode.
+%Kevin Gullikson was born in Eau Claire, Wisconsin, the son of Steve and Jean Gullikson. After graduating from Andover High School in Andover, Minnesota in 2006, he entered the Illinois Institute of Technology in Chicago, Illinois. He recieved a Bachelor of Science from IIT in May 2010. In August 2010, he entered The Graduate School at The University of Texas at Austin, where he is currently working towards his PhD.
+% \end{thesisauthorvita}             
+
+\end{document}                       %% Done.

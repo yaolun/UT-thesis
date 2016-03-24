@@ -87,7 +87,7 @@ and the derived files           utthesis.ins,
 %</internal>
 %<class>
 %<class>\NeedsTeXFormat{LaTeX2e}
-%<class>\ProvidesClass{\jobname}[2014/12/12 v0.2  A class for the UT thesis]
+%<class>\ProvidesClass{utthesis}[2014/12/12 v0.2  A class for the UT thesis]
 %<class>\LoadClass[12pt,oneside]{memoir}
 %<*driver>
 \documentclass{ltxdoc}
@@ -467,6 +467,24 @@ The University of Texas at Austin\\
 % \begin{environment}{UTabstract}
 % This was modifided to match the required abstract guidelines.
 %    \begin{macrocode}
+\DeclareDocumentEnvironment{UTdedication}{ o }{ %
+\begin{titlingpage}
+\begin{center}
+\vspace*{3.5in}
+}{%
+\end{center}
+\end{titlingpage}
+}
+\DeclareDocumentEnvironment{UTacknowledgements}{ o }{ %
+\begin{titlingpage}
+\begin{center}
+{\large \bfseries Acknowledgements}
+
+\vskip 2em
+}{%
+\end{center}
+\end{titlingpage}
+}
 \DeclareDocumentEnvironment{UTabstract}{ O{} m  }{ %
 \begin{center}
 {\bfseries\thetitle}
@@ -578,6 +596,10 @@ Committee:
 \newcommand\pasa{\ref@jnl{PASA}}%  % Publications of the Astron. Soc. of Australia
 \newcommand\rmxaa{\ref@jnl{Rev. Mexicana Astron. Astrofis.}}%  % Revista Mexicana de Astronomia y Astrofisica
 
+
+% Table commands
+\newcommand\nodata{ ~$\cdots$~ }
+
 %    \end{macrocode}
 %\end{environment}
 %
@@ -587,5 +609,5 @@ Committee:
 %\iffalse
 %</class>
 %\fi
-%\CheckSum{433}
+%\CheckSum{450}
 %\Finale

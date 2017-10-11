@@ -83,11 +83,11 @@ and the derived files           utthesis.ins,
   \expandafter\endbatchfile
 \else
   \expandafter\endgroup
-\fi
+\fi % BWM - updated date and version to 0.2.1
 %</internal>
 %<class>
 %<class>\NeedsTeXFormat{LaTeX2e}
-%<class>\ProvidesClass{utthesis}[2014/12/12 v0.2  A class for the UT thesis]
+%<class>\ProvidesClass{utthesis}[2017/10/11 v0.2.1  A class for the UT thesis]
 %<class>\LoadClass[12pt,oneside]{memoir}
 %<*driver>
 \documentclass{ltxdoc}
@@ -110,8 +110,8 @@ and the derived files           utthesis.ins,
 %</driver>
 % \fi
 % 
-% \def\fileversion{v0.2}
-% \def\filedate{2014/03/18}
+% \def\fileversion{v0.2.1}
+% \def\filedate{2017/10/11}
 %
 %\title{^^A
 %  \textsf{\jobname} --- University of Texas at Austin Thesis\thanks{^^A
@@ -487,6 +487,10 @@ The University of Texas at Austin\\
 \begin{center}
 {\bfseries\thetitle}
 
+\vskip 2em 
+
+\center{by} %BWM added "by" and space below it
+
 \vskip 2em
 
 \theauthor, \UTdegree
@@ -495,7 +499,7 @@ The University of Texas at Austin, \the\UTyear
 
 \vskip 2em
 
-Supervisor#1: #2
+SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. School
 
 \vskip 2em
 
@@ -513,20 +517,19 @@ Supervisor#1: #2
 %    \begin{macrocode}
 \DeclareDocumentEnvironment{UTcommittee}{o}{ %
 \begin{titlingpage}
-\bfseries
-\begin{center}
+\begin{center} %BWM removed bolding for entire section
 \begin{SingleSpace}
-The Dissertation Committee for \theauthor\ certifies that this is the approved version of the following dissertation:
+\textbf{The Dissertation Committee for \theauthor\ certifies that this is the approved version of the following dissertation:} %BWM added bold for approval statement
 \end{SingleSpace}
 \vskip 2.5em
 \large
-\thetitle
+\textbf{\thetitle} %BWM added bold for title
 \end{center}
 \vskip 5em
 \begin{flushright}
 \begin{minipage}[b]{3in}
 \begin{flushleft}
-Committee:
+\textbf{Committee:} %BWM added bold for committee indicator
 }{ %
 \end{flushleft}
 \end{minipage}

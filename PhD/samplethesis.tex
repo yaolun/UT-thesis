@@ -6,8 +6,10 @@
 \usepackage{graphicx}
 \usepackage[stable]{footmisc}
 \usepackage[hidelinks]{hyperref} % Handy for links, can comment for plain PDF
+\usepackage{natbib}
 
-\UTyear=2015
+
+\UTyear=2017
 
 \makeindex
 
@@ -29,7 +31,7 @@
 \UTaddcommittee{James Madison}
 \end{UTcommittee}
 
-\UTtitlepage{B.S.}{May}
+\UTtitlepage{May}
 
 \frontmatter
 
@@ -38,7 +40,7 @@
 %\include{acknowledgements}
 %\include{preface}
 
-\begin{UTabstract}[s]{George Washington, Chuck Norris}
+\begin{UTabstract}[S]{George Washington, Chuck Norris}
 \lipsum[1]
 \end{UTabstract}
 
@@ -93,8 +95,16 @@ This is a figure.
 
 \cleardoublepage
 \phantomsection
-\addcontentsline{toc}{chapter}{Bibliography}
-\chapter*{Bibliography}
-\lipsum[2]
+\bibliographystyle{apj}
+
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[Einstein(1905)]{1905AnP...322..891E} Einstein, A.\ 1905, Annalen der Physik, 322, 891 
+
+\bibitem[Newton et al.(2008)]{2008mpin.book.....N} Newton, I., Whiteside, D.~T., \& Hoskin, W.~M.~A.\ 2008, The Mathematical Papers of Isaac Newton, by Isaac Newton , D.~T.~Whiteside , With M.~A.~Hoskin, Cambridge, UK: Cambridge University Press, 2008,  
+
+\bibitem[Zwicky(1964)]{1964ApJ...140.1626Z} Zwicky, F.\ 1964, \apj, 140, 1626 
+\end{thebibliography}
 
 \end{document}

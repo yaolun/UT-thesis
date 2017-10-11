@@ -425,7 +425,7 @@ by\\
 %\begin{macro}{\UTtitlepage}
 % This makes a title page. Spacing was manually made to match guide.
 %    \begin{macrocode}
-\DeclareDocumentCommand{\UTtitlepage}{m m}{
+\DeclareDocumentCommand{\UTtitlepage}{m}{
 \begin{titlingpage}
 \begin{vplace}
 \centering
@@ -442,7 +442,7 @@ by
 
 {
 \bfseries
-\theauthor, #1
+\theauthor
 
 \vskip 3em
 Dissertation
@@ -458,7 +458,7 @@ for the degree of\\
 \vskip 3em
 
 The University of Texas at Austin\\
-#2, \the\UTyear
+#1, \the\UTyear
 \end{vplace}
 \end{titlingpage}}
 %    \end{macrocode}

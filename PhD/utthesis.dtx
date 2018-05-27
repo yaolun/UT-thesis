@@ -536,6 +536,16 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 \end{flushright}
 \end{titlingpage}}
 
+\DeclareDocumentEnvironment{UTvita}{ o }{ %
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Vita}
+\begin{center}
+\vskip 2.5em
+\textbf{VITA}
+\end{center}
+\UTSpacing
+}{}
 
 %Journal references
 \let\jnl@style=\rmfamily
@@ -610,5 +620,5 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 %\iffalse
 %</class>
 %\fi
-%\CheckSum{454}
+%\CheckSum{463}
 %\Finale

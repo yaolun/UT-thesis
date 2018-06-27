@@ -372,7 +372,7 @@ and the derived files           utthesis.ins,
 %\begin{macro}{\UTcopyrightlegend}
 %    \begin{macrocode}
 \DeclareDocumentCommand{\UTcopyrightlegend}{  }{%
-\begin{titlingpage}
+\thispagestyle{empty}
 \begin{vplace}
 \centering\Large\bfseries
 Copyright\\
@@ -380,7 +380,7 @@ by\\
 \theauthor\\
 \the\UTyear
 \end{vplace}
-\end{titlingpage}}
+\newpage}
 %    \end{macrocode}
 %\end{macro} 
 %
@@ -426,7 +426,7 @@ by\\
 % This makes a title page. Spacing was manually made to match guide.
 %    \begin{macrocode}
 \DeclareDocumentCommand{\UTtitlepage}{m}{
-\begin{titlingpage}
+\thispagestyle{empty}
 \begin{vplace}
 \centering
 {
@@ -460,7 +460,8 @@ for the degree of\\
 The University of Texas at Austin\\
 #1, \the\UTyear
 \end{vplace}
-\end{titlingpage}}
+\newpage
+}
 %    \end{macrocode}
 %\end{macro} 
 %
@@ -468,14 +469,15 @@ The University of Texas at Austin\\
 % This was modifided to match the required abstract guidelines.
 %    \begin{macrocode}
 \DeclareDocumentEnvironment{UTdedication}{ o }{ %
-\begin{titlingpage}
+\thispagestyle{empty}
 \begin{center}
 \vspace*{3.5in}
 }{%
 \end{center}
-\end{titlingpage}
+\newpage
 }
 \DeclareDocumentEnvironment{UTacknowledgements}{ o }{ %
+\thispagestyle{plain}
 \begin{center}
 {\large \bfseries Acknowledgements}
 \end{center}
@@ -484,6 +486,7 @@ The University of Texas at Austin\\
 \indent
 }{\newpage}
 \DeclareDocumentEnvironment{UTabstract}{ O{} m  }{ %
+\thispagestyle{plain}
 \begin{center}
 {\bfseries\thetitle}
 
@@ -505,7 +508,7 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 
 \end{center}
 \indent
-}{}
+}{\newpage}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -516,7 +519,7 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 % This adds the committee page.
 %    \begin{macrocode}
 \DeclareDocumentEnvironment{UTcommittee}{o}{ %
-\begin{titlingpage}
+\thispagestyle{empty}
 \begin{center} %BWM removed bolding for entire section
 \begin{SingleSpace}
 \textbf{The Dissertation Committee for \theauthor\ certifies that this is the approved version of the following dissertation:} %BWM added bold for approval statement
@@ -534,7 +537,7 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 \end{flushleft}
 \end{minipage}
 \end{flushright}
-\end{titlingpage}}
+\newpage}
 
 \DeclareDocumentEnvironment{UTvita}{ o }{ %
 \newpage
@@ -620,5 +623,5 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 %\iffalse
 %</class>
 %\fi
-%\CheckSum{463}
+%\CheckSum{466}
 %\Finale

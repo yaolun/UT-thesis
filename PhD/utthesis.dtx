@@ -83,11 +83,11 @@ and the derived files           utthesis.ins,
   \expandafter\endbatchfile
 \else
   \expandafter\endgroup
-\fi % BWM - updated date and version to 0.2.2
+\fi % BWM - updated date and version to 0.3.0
 %</internal>
 %<class>
 %<class>\NeedsTeXFormat{LaTeX2e}
-%<class>\ProvidesClass{utthesis}[2018/06/27 v0.2.2  A class for the UT thesis]
+%<class>\ProvidesClass{utthesis}[2018/06/27 v0.3.0  A class for the UT thesis]
 %<class>\LoadClass[12pt,oneside]{memoir}
 %<*driver>
 \documentclass{ltxdoc}
@@ -614,6 +614,24 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 \newcommand\pasa{\ref@jnl{PASA}}%  % Publications of the Astron. Soc. of Australia
 \newcommand\rmxaa{\ref@jnl{Rev. Mexicana Astron. Astrofis.}}%  % Revista Mexicana de Astronomia y Astrofisica
 
+%BWM: Added at version 0.3.0
+\DeclareRobustCommand\Msun{\ensuremath{\;\mathrm{M}_{\odot}}}
+\DeclareRobustCommand\Rsun{\ensuremath{\;\mathrm{R}_{\odot}}}
+\DeclareRobustCommand\Lsun{\ensuremath{\;\mathrm{L}_{\odot}}}
+\DeclareRobustCommand\Ang{\mbox{\;\normalfont\AA}{}}
+\DeclareRobustCommand{\kmSec}{\ensuremath{\;\mathrm{km}\;\mathrm{s}^{-1}}}%\mathchoice{A}{B}{C}{D}}
+\DeclareRobustCommand{\km}{\ensuremath{\;\mathrm{km}}}
+\DeclareRobustCommand{\Sec}{\ensuremath{\;\mathrm{s}}}
+\DeclareRobustCommand{\erg}{\ensuremath{\;\mathrm{erg}}}
+\DeclareRobustCommand{\ergSec}{\ensuremath{\;\mathrm{erg}\;\mathrm{s}^{-1}}}
+\DeclareRobustCommand{\eV}{\ensuremath{\;\mathrm{eV}}}
+\DeclareRobustCommand{\cm}{\ensuremath{\;\mathrm{cm}}}
+\DeclareRobustCommand{\cmSec}{\ensuremath{\;\mathrm{cm}\;\mathrm{s}^{-1}}}%\mathchoice{A}{B}{C}{D}}
+\DeclareRobustCommand{\gm}{\ensuremath{\;\mathrm{g}}}
+\DeclareRobustCommand{\gmSec}{\ensuremath{\;\mathrm{g}\;\mathrm{s}^{-1}}}%\mathchoice{A}{B}{C}{D}}
+\DeclareRobustCommand{\Kelvin}{\ensuremath{\;\mathrm{K}}}
+\DeclareRobustCommand{\Day}{\ensuremath{\;\mathrm{d}}}
+
 
 % Table commands
 \newcommand\nodata{ ~$\cdots$~ }
@@ -627,5 +645,5 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 %\iffalse
 %</class>
 %\fi
-%\CheckSum{470}
+%\CheckSum{565}
 %\Finale

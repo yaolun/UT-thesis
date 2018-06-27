@@ -83,11 +83,11 @@ and the derived files           utthesis.ins,
   \expandafter\endbatchfile
 \else
   \expandafter\endgroup
-\fi % BWM - updated date and version to 0.2.1
+\fi % BWM - updated date and version to 0.2.2
 %</internal>
 %<class>
 %<class>\NeedsTeXFormat{LaTeX2e}
-%<class>\ProvidesClass{utthesis}[2017/10/11 v0.2.1  A class for the UT thesis]
+%<class>\ProvidesClass{utthesis}[2018/06/27 v0.2.2  A class for the UT thesis]
 %<class>\LoadClass[12pt,oneside]{memoir}
 %<*driver>
 \documentclass{ltxdoc}
@@ -235,6 +235,9 @@ and the derived files           utthesis.ins,
 \RequirePackage{amsmath}
 \RequirePackage{etoolbox}
 \RequirePackage{setspace}
+\RequirePackage[breaklinks=true,allbordercolors={1 1 1}]{hyperref} % Handy for links, can comment for plain PDF, places a white boundary around all links (i.e. invisible), allow links to separate over multiple lines
+\RequirePackage{breakcites}
+\RequirePackage{natbib}
 
 \setlrmarginsandblock{1.25in}{1.25in}{*} % spine, edge
 \setulmarginsandblock{1.25in}{1.5in}{*} % {hupperi}{hloweri}{hratioi}
@@ -469,12 +472,13 @@ The University of Texas at Austin\\
 % This was modifided to match the required abstract guidelines.
 %    \begin{macrocode}
 \DeclareDocumentEnvironment{UTdedication}{ o }{ %
-\thispagestyle{empty}
+\pagestyle{empty}
 \begin{center}
 \vspace*{3.5in}
 }{%
 \end{center}
 \newpage
+\pagestyle{plain}
 }
 \DeclareDocumentEnvironment{UTacknowledgements}{ o }{ %
 \thispagestyle{plain}
@@ -623,5 +627,5 @@ SUPERVISOR#1: #2 %BWM (re?)capitalized supervisor to match example from Grad. Sc
 %\iffalse
 %</class>
 %\fi
-%\CheckSum{466}
+%\CheckSum{470}
 %\Finale
